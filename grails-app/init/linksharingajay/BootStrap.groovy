@@ -5,6 +5,7 @@ class BootStrap {
     def init = { servletContext ->
         createUsers()
         creatTopic()
+        createResources()
 
     }
 
@@ -63,6 +64,34 @@ class BootStrap {
         }
 
     }
+    void createResources(){
+        List<Topic> list=Topic.getAll()
+        if (Resource?.count()==0){
+            list.each {
+                Resource resource1=new DocumentResource(filePath: "/home/ajay/Music/LinkSharing(ajay)/grails-app/controllers/linksharingajay/UrlMappings.groovy${Math.random()}",description: "slfvwlfkvm${Math.random()}")
+                Resource resource2=new DocumentResource(filePath: "/home/ajay/Music/LinkSharing(ajay)/grails-app/controllers/linksharingajay/UrlMappings.groovy${Math.random()}",description: "slfvwlfkvm${Math.random()}")
+                Resource resource3=new LinkResource(url: "https://docs.google.com/presentation/d/1tDcEsXzqqtnvJwtRumul5gVIpGE1qOSBJe1iSIX2JSY/edit#slide=id.g10957a6d98_0_961${Math.random()}",description: "${Math.random()} giberish")
+                Resource resource4=new LinkResource(url: "https://docs.google.com/presentation/d/1tDcEsXzqqtnvJwtRumul5gVIpGE1qOSBJe1iSIX2JSY/edit#slide=id.g10957a6d98_0_961${Math.random()}",description: "${Math.random()} giberish")
+
+                it.addToResources(resource1)
+                it.createdBy.addToResources(resource1)
+                it.addToResources(resource2)
+                it.createdBy.addToResources(resource2)
+                it.addToResources(resource2)
+                it.createdBy.addToResources(resource2)
+                it.addToResources(resource2)
+                it.createdBy.addToResources(resource2)
+                it.save()
+                it.createdBy.save()
+
+            }
+
+        }else {
+            log.error("Resource Error: ${resource3.errors.allErrors}")
+        }
+
+    }
+
     def destroy = {
     }
 }

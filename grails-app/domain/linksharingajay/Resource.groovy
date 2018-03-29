@@ -14,7 +14,7 @@ class Resource {
     static constraints = {
     }
     static mapping = {
-        description type: "text"
+        description type:   "text"
 
     }
 }
