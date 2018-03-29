@@ -14,14 +14,29 @@ class BootStrap {
         user.password="harry192"
         user.firstName="ajay"
         user.admin=true
-        user.save flush:true,failOnError:true
+//        user.save(flush:true,failOnError:true)
+
         User user2=new User()
         user2.email="asjodha22@gamil.com"
         user2.userName="asj1928"
         user2.password="harry1928"
         user2.firstName="ajaySingh"
         user2.admin=false
-        user2.save(flush:true,failOnError:true)
+//        user2.save(flush:true,failOnError:true)
+
+        if (user.save(flush:true,failOnError:true)) {
+
+            log.info "User ${user} saved successfully"
+        } else {
+            log.error "Error saving user : ${user.errors.allErrors}"
+        }
+        if (user2.save(flush:true,failOnError:true)) {
+
+            log.info "User ${user2} saved successfully"
+        } else {
+            log.error "Error saving user : ${user.errors.allErrors}"
+        }
+
     }
     def destroy = {
     }

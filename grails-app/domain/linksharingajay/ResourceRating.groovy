@@ -14,12 +14,7 @@ class ResourceRating {
 
     static constraints = {
         user(nullable: false ,unique: true)
-        score(validator: {val->
-            if(val in 1..5){return true}
-            else {
-                return false
-            }
-        },nullable: false)
+        score(inList:[1,2,3,4,5],nullable: false)
         resource(nullable: false)
     }
 }

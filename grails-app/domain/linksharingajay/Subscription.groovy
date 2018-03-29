@@ -8,6 +8,8 @@ class Subscription {
     Date dateCreated
     Date lastUpdated
 
+
+
     static belongsTo = [user:User, topic:Topic ]
     static constraints = {
         topic(nullable: false ,unique:'user')

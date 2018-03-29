@@ -12,6 +12,9 @@ class User {
     boolean active
     Date dateCreated
     Date lastUpdated
+
+
+
     static hasMany = [topics:Topic, subscriptions:Subscription, readingItems:ReadingItem, resources:Resource]
 
 
