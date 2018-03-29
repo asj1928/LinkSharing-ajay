@@ -20,7 +20,7 @@ class Topic {
     def afterInsert(){
         log.info "----------Into After Insert------"
        Topic.withNewSession {
-            Subscription subscription= new Subscription(topic: this,seriousness: Seriousness.CASUAL,user: this.createdBy)
+            Subscription subscription= new Subscription(topic: this,seriousness: Seriousness.VERY_SERIOUS,user: this.createdBy)
             subscription.save()
 
         }
