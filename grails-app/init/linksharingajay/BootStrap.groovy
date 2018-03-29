@@ -4,6 +4,7 @@ class BootStrap {
 
     def init = { servletContext ->
         createUsers()
+        creatTopic()
 
     }
 
@@ -45,7 +46,21 @@ class BootStrap {
           println("there is data in the table")
       }
     }
-    void creatTopic(){
+        void creatTopic(){
+        List<User> noOfUser = User.getAll()
+        noOfUser.each {
+            if(Topic?.countByCreatedBy(it)==0){
+                def a=it
+                5.times {
+                    Topic topic=new Topic(name: "topic${Math.random()}",visibility: Visibility.PUBLIC,createdBy: a)
+
+                    a.addToTopics(topic)
+                    topic.save()
+
+                }
+                a.save()
+            }
+        }
 
     }
     def destroy = {
