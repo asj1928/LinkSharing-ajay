@@ -3,7 +3,7 @@ package linksharingajay
 
 class Topic {
     String name
-//    User createdBy
+    User createdBy
     Date dateCreated
     Date lastUpdated
 

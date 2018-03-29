@@ -6,6 +6,7 @@ class User {
     transient String name
     String password
     String firstName
+    String lastName
     byte photo
     boolean admin
     boolean active
@@ -18,7 +19,9 @@ class User {
         email(unique: true ,nullable: false,blank: false, email: true)
         password(size: 5..35,nullable: false,blank: false)
         firstName(nullable: false,blank: false)
-        userName(nullable: false,blank: false)
+        lastName(nullable: false,blank: false)
+        userName(unique: true,nullable: false,blank: false)
+
         photo(nullable:true)
         admin(nullable:true)
         active(nullable:true)
