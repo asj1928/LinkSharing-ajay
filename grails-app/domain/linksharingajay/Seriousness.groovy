@@ -1,6 +1,6 @@
 package linksharingajay
 
-enum Seriousness {
+enum    Seriousness {
     SERIOUS,CASUAL,VERY_SERIOUS
 
 }

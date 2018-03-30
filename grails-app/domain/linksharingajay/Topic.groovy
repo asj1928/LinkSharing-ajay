@@ -20,8 +20,14 @@ class Topic {
     def afterInsert(){
         log.info "----------Into After Insert------"
        Topic.withNewSession {
+
             Subscription subscription= new Subscription(topic: this,seriousness: Seriousness.VERY_SERIOUS,user: this.createdBy)
-            subscription.save()
+           if (subscription.save()) {
+               log.info "------------------subscription saved--------"
+           }
+           else {
+               log.error("Error:${subscription.errors.getAllErrors()}")
+           }
 
         }
 
