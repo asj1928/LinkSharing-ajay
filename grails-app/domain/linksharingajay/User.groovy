@@ -34,4 +34,11 @@ class User {
     static mapping = {
         photo(sqlType: "longblob")
     }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "userName='" + userName + '\'' +
+                '}';
+    }
 }
