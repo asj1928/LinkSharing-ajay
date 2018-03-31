@@ -12,6 +12,9 @@ class LoginController {
 
     def loginHandler(){}
 
-    def logout(){}
+    def logout(){
+        session.invalidate()
+        redirect(action:'index')
+    }
 
 }
