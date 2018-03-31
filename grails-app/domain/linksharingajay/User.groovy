@@ -1,5 +1,7 @@
 package linksharingajay
 
+import java.beans.Transient
+
 class User {
     String email
     String userName
@@ -12,6 +14,9 @@ class User {
     boolean active
     Date dateCreated
     Date lastUpdated
+    transient String confirmPassword
+
+
 
 
 
@@ -19,7 +24,10 @@ class User {
 
     static constraints = {
         email(unique: true ,nullable: false,blank: false, email: true)
-        password(size: 5..35,nullable: false,blank: false)
+        password(size: 5..35,nullable: false,blank: false,validator:{ val, obj, errors ->
+                if (!(obj.confirmPassword == val))
+                    errors.rejectValue('password', 'noMatch')
+        })
         firstName(nullable: false,blank: false)
         lastName(nullable: false,blank: false)
         userName(unique: true,nullable: false,blank: false)

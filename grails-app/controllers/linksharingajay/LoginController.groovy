@@ -31,5 +31,26 @@ class LoginController {
         session.invalidate()
         redirect(action:'index')
     }
+    def register(){
+        User admin = new User(email: "ajay@gmail.com", password:"bogasspass", firstName: "ajay", lastName: "singh", userName: 'asj', photo: 121, admin: true, active: true)
+        if(admin.save()){
+            flash.message="Admin Saved Successfully"
+        }
+        else {
+            flash.error="error"
+        }
+
+        User normal = new User(email: "lal@gmail.com", password: "hokaspokas", firstName: "lal", lastName: "Jhala", userName: 'jhala_lal', photo: 122, admin: false, active: true)
+        if(normal.save()){
+            flash.message="Normal User Saved Successfully"
+        }
+        else {
+            flash.error="error"
+        }
+
+        redirect(action: "index")
+    }
 
 }
+
+
