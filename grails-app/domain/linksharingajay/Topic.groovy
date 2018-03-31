@@ -22,7 +22,7 @@ class Topic {
        Topic.withNewSession {
 
             Subscription subscription= new Subscription(topic: this,seriousness: Seriousness.VERY_SERIOUS,user: this.createdBy)
-           if (subscription.save()) {
+           if (subscription.save(flush:true)) {
                log.info "------------------subscription saved--------"
            }
            else {

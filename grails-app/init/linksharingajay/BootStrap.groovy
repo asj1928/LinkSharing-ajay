@@ -4,111 +4,157 @@ class BootStrap {
 
     def init = { servletContext ->
         createUsers()
-        creatTopic()
-        createResources()
+        createTopics()
+        createResource()
         subscribeTopicsNotCreatedByUser()
+        createReadingItems()
+        createResourceRating()
 
     }
 
+    void createUsers(){
 
-    void createUsers() {
-        if (User.count() == 0) {
-            User user = new User()
-            user.email = "asjodha@gamil.com"
-            user.userName = "asj"
-            user.password = "harry192"
-            user.firstName = "ajay"
-            user.lastName = "jodha"
-            user.admin = true
-//        user.save(flush:true,failOnError:true)
 
-            User user2 = new User()
-            user2.email = "asjodha22@gamil.com"
-            user2.userName = "asj1928"
-            user2.password = "harry1928"
-            user2.firstName = "ajaySingh"
-            user2.lastName = "jodha"
-            user2.admin = false
-//        user2.save(flush:true,failOnError:true)
-
-            if (user.save()) {
-
-                log.info "User ${user} saved successfully"
-            } else {
-                log.error "Error saving user : ${user.errors.allErrors}"
+        //admin
+        if(User.count()==0) {
+            User admin = new User(email: "ajay@gmail.com", password:"lololol", firstName: "ajay", lastName: "singh", userName: 'ajay.s.jodha', admin: true, active: true)
+            if(admin.save()){
+                log.info("Admin Saved Successfully")
             }
-            if (user2.save()) {
-
-                log.info "User ${user2} saved successfully"
-            } else {
-                log.error "Error saving user : ${user.errors.allErrors}"
+            else {
+                log.error("error: ${admin.errors.getAllErrors()}")
             }
-        } else {
-            println("there is data in the table")
+
+            //normal
+            User normal = new User(email: "asjodha22@gmail.com", password: "pppppppp", firstName: "ajay", lastName: "jodha", userName: 'asjodha', admin: false, active: true)
+            if(normal.save()){
+                log.info("Normal User Saved Successfully")
+            }
+            else {
+                log.error("error: ${normal.errors.getFieldErrors()}")
+            }
+
         }
     }
 
-    void creatTopic() {
-        List<User> noOfUser = User.getAll()
-        noOfUser.each {
-            if (Topic?.countByCreatedBy(it) == 0) {
-                def a = it
-                5.times {
-                    Topic topic = new Topic(name: "topic${Math.random()}", visibility: Visibility.PUBLIC, createdBy: a)
+    void createTopics() {
+        List<User> userCount = User.getAll()
+        userCount.each {
 
-                    a.addToTopics(topic)
-                    topic.save()
+            if (Topic.findAllByCreatedBy(it).size()==0) {
+
+                Topic topic = new Topic(name: "topic${Math.random()}", createdBy: it, visibility: Visibility.PUBLIC)
+
+                Topic topic1 = new Topic(name: "topic${Math.random()}", createdBy: it, visibility: Visibility.PRIVATE)
+
+                Topic topic2 = new Topic(name: "topic${Math.random()}", createdBy: it, visibility: Visibility.PUBLIC)
+
+                Topic topic3 = new Topic(name: "topic${Math.random()}", createdBy: it, visibility: Visibility.PRIVATE)
+
+                Topic topic4 = new Topic(name: "topic${Math.random()}", createdBy: it, visibility: Visibility.PUBLIC)
+
+
+                if(topic.save())
+                    it.addToTopics(topic)
+
+                if(topic1.save())
+                    it.addToTopics(topic1)
+
+                if(topic2.save())
+                    it.addToTopics(topic2)
+
+                if(topic3.save())
+                    it.addToTopics(topic3)
+
+                if(topic4.save())
+                    it.addToTopics(topic4)
+
+
+                else {
+                    log.error("Topic ${topic.errors.getFieldErrors()}")
+                    log.error("Topic ${topic1.errors.getFieldErrors()}")
+                    log.error("Topic ${topic2.errors.getFieldErrors()}")
+                    log.error("Topic ${topic3.errors.getFieldErrors()}")
+                    log.error("Topic ${topic4.errors.getFieldErrors()}")
 
                 }
-                a.save()
-            }
-        }
-
-    }
-
-    void createResources() {
-        List<Topic> list = Topic.getAll()
-        if (Resource?.count() == 0) {
-            list.each {
-                Resource resource1 = new DocumentResource(filePath: "/home/ajay/Music/LinkSharing(ajay)/grails-app/controllers/linksharingajay/UrlMappings.groovy${Math.random()}", description: "slfvwlfkvm${Math.random()}")
-                Resource resource2 = new DocumentResource(filePath: "/home/ajay/Music/LinkSharing(ajay)/grails-app/controllers/linksharingajay/UrlMappings.groovy${Math.random()}", description: "slfvwlfkvm${Math.random()}")
-                Resource resource3 = new LinkResource(url: "https://docs.google.com/presentation/d/1tDcEsXzqqtnvJwtRumul5gVIpGE1qOSBJe1iSIX2JSY/edit#slide=id.g10957a6d98_0_961${Math.random()}", description: "${Math.random()} giberish")
-                Resource resource4 = new LinkResource(url: "https://docs.google.com/presentation/d/1tDcEsXzqqtnvJwtRumul5gVIpGE1qOSBJe1iSIX2JSY/edit#slide=id.g10957a6d98_0_961${Math.random()}", description: "${Math.random()} giberish")
-
-                it.addToResources(resource1)
-                it.createdBy.addToResources(resource1)
-                it.addToResources(resource2)
-                it.createdBy.addToResources(resource2)
-                it.addToResources(resource3)
-                it.createdBy.addToResources(resource3)
-                it.addToResources(resource4)
-                it.createdBy.addToResources(resource4)
                 it.save()
-                it.createdBy.save()
+                log.info("Topics Saved Successfully")
+
 
             }
-
-        } else {
-            log.error("Resource Error: ${resource3.errors.allErrors}")
         }
+    }
+
+    void createResource(){
+
+        if(Resource.count()==0) {
+
+            List<Topic> topics = Topic.getAll()
+
+            topics.each {
+                Resource resource = new LinkResource(url: "https://en.wikipedia.org/wiki/Big_data", description: "${it.name} url", topic: it, user: it.createdBy)
+                Resource resource1 = new LinkResource(url: "https://www.sas.com/en_in/insights/big-data/what-is-big-data.html", description: "${it.name} bigdata", topic: it, user: it.createdBy)
+                Resource resource2 = new DocumentResource(filePath: "fvnkdfvdk", description: "${it.name} cndfbcfefbfer", user: it.createdBy, topic: it)
+                Resource resource3 = new DocumentResource(filePath: "nvdjfn", user: it.createdBy, description: "${it.name} sdns", topic: it)
+
+                if (resource.save()) {
+                    it.addToResources(resource)
+                    it.createdBy.addToResources(resource)
+                }
+                else {
+                    log.error("Resource Error: ${resource.errors.allErrors}")
+                }
+                if (resource1.save()) {
+                    it.addToResources(resource1)
+                    it.createdBy.addToResources(resource1)
+                }
+                else {
+                    log.error("Resource Error: ${resource1.errors.allErrors}")
+                }
+                if(resource2.save()){
+                    it.addToResources(resource2)
+                    it.createdBy.addToResources(resource2)
+
+                }
+                else{
+                    log.error("Resource Error: ${resource2.errors.allErrors}")
+
+                }
+                if(resource3.save()){
+                    it.addToResources(resource3)
+                    it.createdBy.addToResources(resource3)
+
+                }
+                else{
+                    log.error("Resource Error: ${resource3.errors.allErrors}")
+                }
+                it.createdBy.save()
+                it.save()
+            }
+
+        }
+
 
     }
 
-    void subscribeTopicsNotCreatedByUser() {
+    void subscribeTopicsNotCreatedByUser(){
+        List<User> userList=User.getAll()
 
-        List<User> noOfUser = User.getAll()
-
-        noOfUser.each {
-            User user ->
-                List<Topic> topics = Topic.findAllByCreatedByNotEqual(user)
+        userList.each{
+            User user->
+                List<Topic> topics=Topic.findAllByCreatedByNotEqual(user)
 
                 topics.each {
-                    Subscription subscription = new Subscription(seriousness: Seriousness.CASUAL, user: user, topic: it)
-                    if (subscription.save()) {
-                       log.info "------------------subscription saved--------"
-                    }
-                    else {
-                        log.error("Error:${subscription.errors.getAllErrors()}")
+                    if(Subscription.findAllByTopicAndUser(it,user).size()==0) {
+                        Subscription subscription = new Subscription(seriousness: Seriousness.CASUAL, user: user, topic: it)
+                        if (subscription.save()) {
+                            log.info "===============subscrip save ho gaya======================"
+
+                        }
+                        else {
+                            log.error("Error:${subscription.errors.getAllErrors()}")
+                        }
                     }
                 }
 
@@ -117,6 +163,22 @@ class BootStrap {
 
     }
 
+    void createReadingItems(){
+        List<Resource> resource=Resource.getAll()
+        resource.each {
+            ReadingItem readingItem=new ReadingItem(user: it.user,resource:it,isRead:true)
+            readingItem.save()
+        }
+
+    }
+
+    void createResourceRating(){
+        List<Resource> resource=Resource.getAll()
+        resource.each {
+            ResourceRating resourceRating=new ResourceRating(user: it.user,resource:it,score: 3)
+            resourceRating.save()
+        }
+    }
 
     def destroy = {
     }

@@ -1,6 +1,6 @@
 package linksharingajay
 
-class LinkResource extends Resource{
+class   LinkResource extends Resource{
     String url
 
     Date dateCreated
