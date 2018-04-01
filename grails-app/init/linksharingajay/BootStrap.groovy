@@ -1,5 +1,7 @@
 package linksharingajay
 
+import co.linksharingajay.ResourceSearchCO
+
 class BootStrap {
 
     def init = { servletContext ->

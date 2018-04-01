@@ -1,4 +1,6 @@
-package linksharingajay
+package co.linksharingajay
+
+import linksharingajay.Visibility
 
 class ResourceSearchCO extends SearchCO {
 

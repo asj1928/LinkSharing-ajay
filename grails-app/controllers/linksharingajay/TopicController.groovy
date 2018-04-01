@@ -1,5 +1,7 @@
 package linksharingajay
 
+import co.linksharingajay.ResourceSearchCO
+
 class TopicController {
 
     def index() {
@@ -8,7 +10,7 @@ class TopicController {
         flash.error = "Error"
     }
 
-    def show(ResourceSearchCO resourceSearchCO,Long id){
+    def show(ResourceSearchCO resourceSearchCO, Long id){
 
         User user=User.read(session.user.id)
         //println user.topics

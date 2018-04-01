@@ -1,4 +1,4 @@
-package linksharingajay
+package co.linksharingajay
 
 class SearchCO {
     String q
