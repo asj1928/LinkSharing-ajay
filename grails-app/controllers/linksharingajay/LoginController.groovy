@@ -2,36 +2,55 @@ package linksharingajay
 
 class LoginController {
 
-
     def index() {
+        if(session.user){
+            render(controller:'login',action:'index')
+        }else{
+            render "failure"
+        }
+    }
 
-        if(session.user)
-            forward(controller: 'login',action:'index')
-        else
-            render( 'failure')
+    def loginHandler(String userName, String password){
+        User user=User.findByUserNameAndPassword(userName,password)
+        if(user!=null){
+            if(user.active){
+                session.user=user
+                redirect action: 'index'
+
+            }else {
+                flash.error='Your accoutn is not active'
+            }
+        }
+        else{
+            flash.error="User not found"
+        }
+
     }
 
     def logout(){
         session.invalidate()
         redirect(action:'index')
     }
-
-
-    def loginHandler(String userName, String password) {
-        println(userName)
-        User user = User.findByUserNameAndPassword(userName, password)
-        if(user!=null) {
-            if(user.active) {
-                session.user=user
-            }
-            else {
-                flash.error = "Your account is not active"
-
-            }
+    def register(){
+        User admin = new User(email: "ajay@gmail.com", password:"bogasspass", firstName: "ajay", lastName: "singh", userName: 'asj', photo: 121, admin: true, active: true)
+        if(admin.save()){
+            flash.message="Admin Saved Successfully"
         }
-        redirect(action: 'index')
+        else {
+            flash.error="error"
+        }
 
+        User normal = new User(email: "lal@gmail.com", password: "hokaspokas", firstName: "lal", lastName: "Jhala", userName: 'jhala_lal', photo: 122, admin: false, active: true)
+        if(normal.save()){
+            flash.message="Normal User Saved Successfully"
+        }
+        else {
+            flash.error="error"
+        }
 
+        redirect(action: "index")
     }
 
 }
+
+
