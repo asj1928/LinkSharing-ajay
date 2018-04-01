@@ -26,6 +26,7 @@ class Topic {
                log.info "------------------subscription saved--------"
            }
            else {
+
                log.error("Error:${subscription.errors.getAllErrors()}")
            }
 
