@@ -15,4 +15,5 @@ class ResourceSpec extends Specification implements DomainUnitTest<Resource> {
         expect:"fix me"
             true == false
     }
+
 }
