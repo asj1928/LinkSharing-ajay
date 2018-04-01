@@ -28,4 +28,20 @@ class LinkResourceSpec extends Specification implements DomainUnitTest<LinkResou
         result==true
     }
 
+    def " to string of linkResource"(){
+        setup:
+        String email = "asjodha22@gamil.com"
+        String password = 'harinder'
+        User user = new User(email: email,userName:"asj1928",password:password, firstName: "ajay", lastName: "jodha",admin:false,active:true)
+        Topic topic = new Topic(name:"topic1    ",visibility: Visibility.PUBLIC,createdBy: user)
+        LinkResource linkResource=new LinkResource(url:"http://learning.tothenew.com/ttn/session/show/?sessionId=708", user:user,topic: topic,description: "description for linkresource")
+
+        when:
+        linkResource.save()
+        then:
+        linkResource.toString()==
+                "LinkResource{url='${linkResource.url}'}"
+
+    }
+
 }
