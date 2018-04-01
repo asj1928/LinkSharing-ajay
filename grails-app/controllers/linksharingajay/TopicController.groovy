@@ -20,6 +20,10 @@ class TopicController {
 
     def delete(Integer id) {
         Topic topic = Topic.load(id)
+        if (topic.delete())
+            render("Successfully Deleted")
+        else
+            render("Error")
         render("${topic}")
 
     }
@@ -28,7 +32,7 @@ class TopicController {
         if (topic.save()) {
             render("saved Successfully")
         } else {
-            flash.error="Error"
+            flash.error = "Error"
             render("error")
         }
 

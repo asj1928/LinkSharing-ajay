@@ -19,4 +19,8 @@ class Subscription {
 
 
     }
+
+    static mapping = {
+        seriousness defaultValue: Seriousness.SERIOUS
+    }
 }
