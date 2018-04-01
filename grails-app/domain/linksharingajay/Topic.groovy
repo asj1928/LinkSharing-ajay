@@ -36,6 +36,7 @@ class Topic {
     }
     static mapping = {
         sort("name": "asc")
+        subscriptions lazy: false
     }
 
     @Override

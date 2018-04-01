@@ -19,6 +19,7 @@ class User {
 
     static mapping = {
         sort("id": "desc")
+        subscriptions lazy: false
         photo(sqlType: "longblob")
 
     }
