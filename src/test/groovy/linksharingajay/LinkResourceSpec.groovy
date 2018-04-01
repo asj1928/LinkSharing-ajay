@@ -27,4 +27,5 @@ class LinkResourceSpec extends Specification implements DomainUnitTest<LinkResou
         then:
         result==true
     }
+
 }

@@ -169,7 +169,23 @@ class BootStrap {
             ReadingItem readingItem=new ReadingItem(user: it.user,resource:it,isRead:true)
             readingItem.save()
         }
+//
 
+    }
+    void readingItemIfItDoesNotExistsInUsersReadingItem(User user,Topic topic)
+    {
+        topic.resources.each {
+            ReadingItem readingItem=new ReadingItem(user: user,resource:it,isRead: false)
+            if(readingItem.save()){
+                it.addToReadingItems(readingItem)
+                it.save()
+                user.addToReadingItems(readingItem)
+                user.save()
+            }
+            else{
+                log.error("Error: ${readingItem.errors.getAllErrors()}")
+            }
+        }
     }
 
     void createResourceRating(){
