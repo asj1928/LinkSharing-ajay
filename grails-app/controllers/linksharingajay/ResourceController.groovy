@@ -17,5 +17,10 @@ class ResourceController {
 
         render ("no object found")
     }
+    def search(){
+        ResourceSearchCO resourceSearchCO=new ResourceSearchCO()
+        if(resourceSearchCO.q)
+            resourceSearchCO.visibility=Visibility.PUBLIC
+    }
 
 }
