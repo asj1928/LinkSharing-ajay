@@ -2,8 +2,8 @@ package linksharingajay
 
 class LoginController {
 
-    String a="ajay.s.jodha"
-    String b="lololol"
+//    String a="ajay.s.jodha"
+//    String b="lololol"
     def index() {
         if(session.user){
             render(controller:'login',action:'index')
@@ -13,8 +13,8 @@ class LoginController {
     }
 
     def loginHandler(String userName, String password){
-        userName=a
-        password=b
+//        userName=a
+//        password=b
         User user=User.findByUserNameAndPassword(userName,password)
         if(user!=null){
             if(user.active){
