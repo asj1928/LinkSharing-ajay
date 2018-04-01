@@ -9,6 +9,10 @@ class BootStrap {
         subscribeTopicsNotCreatedByUser()
         createReadingItems()
         createResourceRating()
+        ResourceSearchCO resourceSearchCO=new ResourceSearchCO(topicId: 2)
+        log.info("-----------------------------------------")
+        def str= Resource.search(resourceSearchCO).list()
+        println(str)
 
     }
 

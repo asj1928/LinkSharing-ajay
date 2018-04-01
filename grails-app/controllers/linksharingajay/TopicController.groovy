@@ -8,13 +8,11 @@ class TopicController {
         flash.error = "Error"
     }
 
-    def show() {
+    def show(ResourceSearchCO resourceSearchCO,Long id){
 
-
-        User user = User.read(session.user.id)
+        User user=User.read(session.user.id)
+        //println user.topics
         render(user.topics)
-
-
     }
 
 
