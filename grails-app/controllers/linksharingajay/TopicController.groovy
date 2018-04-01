@@ -3,26 +3,32 @@ package linksharingajay
 class TopicController {
 
     def index() {
+
         render "topic"
+        flash.error = "Error"
     }
 
-    def show(){
-        Topic topic=Topic.read()
+    def show() {
+
+
+        User user = User.read(session.user.id)
+        render(user.topics)
+
+
+    }
+
+
+    def delete(Integer id) {
+        Topic topic = Topic.load(id)
         render("${topic}")
 
-
     }
 
-    def delete(Integer id){
-        Topic topic=Topic.load(id)
-        render("${topic}")
-
-    }
-    def save(Topic topic){
-        if(topic.save()){
+    def save(Topic topic) {
+        if (topic.save()) {
             render("saved Successfully")
-        }
-        else{
+        } else {
+            flash.error="Error"
             render("error")
         }
 

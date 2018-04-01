@@ -15,7 +15,6 @@ class BootStrap {
     void createUsers(){
 
 
-        //admin
         if(User.count()==0) {
             User admin = new User(email: "ajay@gmail.com", password:"lololol", firstName: "ajay", lastName: "singh", userName: 'ajay.s.jodha', admin: true, active: true)
             if(admin.save()){
@@ -25,7 +24,6 @@ class BootStrap {
                 log.error("error: ${admin.errors.getAllErrors()}")
             }
 
-            //normal
             User normal = new User(email: "asjodha22@gmail.com", password: "pppppppp", firstName: "ajay", lastName: "jodha", userName: 'asjodha', admin: false, active: true)
             if(normal.save()){
                 log.info("Normal User Saved Successfully")
