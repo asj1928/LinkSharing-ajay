@@ -17,6 +17,11 @@ class User {
 
     static hasMany = [topics:Topic,subscriptions:Subscription,resources:Resource,resourceRating:ResourceRating,readingItems:ReadingItem]
 
+    static mapping = {
+        sort("id": "desc")
+        photo(sqlType: "longblob")
+
+    }
     static constraints = {
         email(unique: true ,nullable: false,blank: false, email: true)
         password(size: 5..35,nullable: false,blank: false)
@@ -30,9 +35,7 @@ class User {
 
 
     }
-    static mapping = {
-        photo(sqlType: "longblob")
-    }
+
 
     @Override
     public String toString() {
