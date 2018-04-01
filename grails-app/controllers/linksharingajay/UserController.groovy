@@ -1,10 +1,15 @@
 package linksharingajay
 
+import co.linksharingajay.SearchCO
+
 class UserController {
 
-    def index() {
-        render session.user.userName    }
+    def index(SearchCO searchCO) {
 
+        render(session.user.userName)
+
+        render session.user.getUnreadResource(searchCO)
+    }
     def show(Integer id){
         if(Topic.count()==0){
             flash.error "Topic is not present"

@@ -1,5 +1,7 @@
 package linksharingajay
 
+import co.linksharingajay.SearchCO
+
 class User {
     String email
     String userName
@@ -35,6 +37,16 @@ class User {
         active(nullable:true)
 
 
+    }
+    List getUnreadResource(SearchCO searchCO){
+
+        if(searchCO.q){
+            List<ReadingItem> readingItems= ReadingItem.createCriteria().list(max:10,offset:0){
+                ilike('resource.description',this.resources.description)
+                eq('isRead',false)
+            }
+            return  readingItems
+        }
     }
 
 

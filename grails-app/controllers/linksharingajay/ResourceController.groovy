@@ -1,6 +1,7 @@
 package linksharingajay
 
 import co.linksharingajay.ResourceSearchCO
+import co.linksharingajay.SearchCO
 import org.hibernate.ObjectNotFoundException
 import vo.linksharingajay.RatingInfoVO
 
@@ -26,8 +27,11 @@ class ResourceController {
     }
     def show(Integer id){
         Resource resource=Resource.get(id)
-        RatingInfoVO ratingInfoVO= resource.setRatingInfo(resource)
-        render(ratingInfoVO)
+        SearchCO searchCO=new SearchCO(q:"dcdcsd")
+        RatingInfoVO ratingInfoVO= resource.getRatingInfoVo(resource)
+        println ("------------------------- ${resource.topPost()}")
+        println ("=x=x=x=x=x=x=x=x=x=x=x=x= ${session.user.getUnreadResource(searchCO)}")
+        render(ratingInfoVO.averagescore)
     }
 
 }

@@ -45,13 +45,13 @@ class Topic {
             projections {
                 createAlias('topic', 't')
                 groupProperty('t.id')
-                property('t.name')
                 property('t.visibility')
                 count('t.id', 'topicCount')
                 property('t.createdBy')
+                property('t.name')
             }
-            eq('t.visibility',Visibility.PUBLIC)
             order('topicCount', 'desc')
+            eq('t.visibility',Visibility.PUBLIC)
             order('t.name', 'asc')
             maxResults(5)
         }

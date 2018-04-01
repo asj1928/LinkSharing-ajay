@@ -19,13 +19,14 @@ abstract class Resource {
     static namedQueries = {
         search {
             ResourceSearchCO resourceSearchCO ->
-                if(resourceSearchCO.topicId)
+                if (resourceSearchCO.topicId)
                     eq('topic.id', resourceSearchCO.topicId)
-                if(resourceSearchCO.visibility)
-                    eq('topic.visibility',resourceSearchCO.visibility)
+                if (resourceSearchCO.visibility)
+                    eq('topic.visibility', resourceSearchCO.visibility)
 
         }
     }
+
     Integer totalVotes(Resource resource) {
         Integer votes = ResourceRating.createCriteria().count() {
 
@@ -34,33 +35,54 @@ abstract class Resource {
 
         return votes
     }
-    def avgScore(Resource resource){
-        def average= ResourceRating.createCriteria().get {
-            projections{
+
+    def avgScore(Resource resource) {
+        def average = ResourceRating.createCriteria().get {
+            projections {
                 avg('score')
             }
-            eq("resource",resource)
+            eq("resource", resource)
         }
 
         return average
 
     }
-    def totalScore(Resource resource){
-        def sum1 = ResourceRating.createCriteria().get(){
+
+    def totalScore(Resource resource) {
+        def sum1 = ResourceRating.createCriteria().get() {
 
             projections {
                 sum('score')
             }
-            eq("resource",resource)
+            eq("resource", resource)
         }
 
         return sum1
     }
-    RatingInfoVO setRatingInfo(Resource resource){
-        RatingInfoVO ratingInfoVO1=new RatingInfoVO()
-        ratingInfoVO1.averagescore=avgScore(resource)
-        ratingInfoVO1.totalScore=totalScore(resource)
-        ratingInfoVO1.totalVotes=totalVotes(resource)
+
+    RatingInfoVO setRatingInfo(Resource resource) {
+        RatingInfoVO ratingInfoVO1 = new RatingInfoVO()
+        ratingInfoVO1.averagescore = avgScore(resource)
+        ratingInfoVO1.totalScore = totalScore(resource)
+        ratingInfoVO1.totalVotes = totalVotes(resource)
         return ratingInfoVO1
+    }
+
+    List<Resource> topPost() {
+
+        List resourceIds = ResourceRating.createCriteria().list {
+            projections {
+                property('resource.id')
+            }
+            groupProperty('resource.id')
+            count('resource.id', 'resourceCount')
+            order('resourceCount', 'desc')
+            maxResults(5)
+        }
+
+        List<Resource> resources = Resource.getAll(resourceIds)
+        return resources
+
+
     }
 }
