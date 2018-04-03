@@ -9,7 +9,7 @@
 <html>
 <head>
     <title>HELLO</title>
-    <meta name="layout" content="main"/>
+    <meta name="layout" content="Application"/>
 </head>
 
 <body>
@@ -131,14 +131,14 @@
                     <h3 style="color:white">Login</h3></p>
                 </div>
                 <div class="panel-body ">
-                    <form>
+                    <g:form controller="login" action="loginHandler">
                         <div class="form-group col-lg-10">
                             <label for="em">Email</label>
-                            <input class="form-control" type="email" id="em" placeholder="enter your email ID">
+                            <input class="form-control" type="email" name="email" id="em" placeholder="enter your email ID">
                         </div><div class="col-lg-2"></div>
                         <div class="form-group col-lg-10">
                             <label for="psw">Password</label>
-                            <input class="form-control" type="password" id="psw" placeholder="enter your password">
+                            <input class="form-control" type="password" id="psw" name="password" placeholder="enter your password">
 
                         </div>
                         <div class="col-lg-12"></div>
@@ -150,7 +150,7 @@
                         </div>
 
 
-                    </form>
+                    </g:form>
 
                 </div>
             </div>

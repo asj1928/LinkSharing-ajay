@@ -5,23 +5,21 @@ class LoginController {
     //    String a="ajay.s.jodha"
     //    String b="lololol"
     def index() {
-        if(session.user){
-            render(controller:'login',action:'index')
-        }else{
-            render "failure"
-        }
+
     }
 
-    def loginHandler(String userName, String password){
+    def loginHandler(){
 //        userName=a
 //        password=b
-        User user=User.findByUserNameAndPassword(userName,password)
+        println(params.email)
+        User user=User.findByEmailAndPassword(params.email,params.password)
         if(user!=null){
             print "user is not null"
             if(user.active){
                 log.info("user active")
+                println("user active")
                 session.user=user
-                redirect action: 'index'
+                redirect controller:"user",action: 'index'
 
             }else {
                 print("user not active")

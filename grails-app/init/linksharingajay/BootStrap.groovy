@@ -30,7 +30,7 @@ class BootStrap {
                 log.error("error: ${admin.errors.getAllErrors()}")
             }
 
-            User normal = new User(email: "asjodha22@gmail.com", password: "pppppppp", firstName: "ajay", lastName: "jodha", userName: 'asjodha', admin: false, active: true)
+            User normal = new User(email: "asjodha22@gmail.com", password: "please", firstName: "ajay", lastName: "jodha", userName: 'asjodha', admin: false, active: true)
             if(normal.save()){
                 log.info("Normal User Saved Successfully")
             }
