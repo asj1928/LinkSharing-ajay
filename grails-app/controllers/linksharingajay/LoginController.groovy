@@ -2,8 +2,8 @@ package linksharingajay
 
 class LoginController {
 
-//    String a="ajay.s.jodha"
-//    String b="lololol"
+    //    String a="ajay.s.jodha"
+    //    String b="lololol"
     def index() {
         if(session.user){
             render(controller:'login',action:'index')
@@ -17,15 +17,19 @@ class LoginController {
 //        password=b
         User user=User.findByUserNameAndPassword(userName,password)
         if(user!=null){
+            print "user is not null"
             if(user.active){
+                log.info("user active")
                 session.user=user
                 redirect action: 'index'
 
             }else {
+                print("user not active")
                 flash.error='Your accoutn is not active'
             }
         }
         else{
+            print "user is  null"
             flash.error="User not found"
         }
 

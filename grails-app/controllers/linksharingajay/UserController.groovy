@@ -4,31 +4,25 @@ import co.linksharingajay.SearchCO
 
 class UserController {
 
-    def index(SearchCO searchCO) {
-
-        render(session.user.userName)
-
-        render session.user.getUnreadResource(searchCO)
+    def index() {
+        /*render(session.user.userName)*/
+        /* session.user.getUnreadResource()*/
     }
+
     def show(Integer id){
-        if(Topic.count()==0){
-            flash.error "Topic is not present"
-            redirect controller:'login',action:'index'
 
-        }else {
-            if(Topic.findByVisibility(Visibility.PUBLIC)){
-                render "success"
-            }else {
-                if(Subscription.findByTopicAndUser(topic,session.user))
-                    render("Subscription Exists")
-                else{
-                    flash.error="Subscription does not exists"
-                    redirect(action:"login/index")
-                }
-
-
+        Topic topic=Topic.get(id)
+        if(topic.visibility==Visibility.PUBLIC) {
+            render("success")
+        }
+        else{
+            if(Subscription.findByTopicAndUser(topic,session.user))
+                render("Subscription Exists")
+            else
+            {
+                flash.error="Subscription does not exists"
+                redirect(action:"login/index")
             }
         }
-
     }
 }

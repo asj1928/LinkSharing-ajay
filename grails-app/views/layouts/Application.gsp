@@ -36,15 +36,23 @@
 
 
 </nav>
+<g:if test="${flash.error}">
+    <g:message message="${flash.error}"></g:message>
 
+</g:if>
+<g:if test="${flash.message}">
+    <g:message message="${flash.message}"></g:message>
+
+</g:if>
 <g:layoutBody/>
-<div class="footer" role="contentinfo"></div>
-
-<div id="spinner" class="spinner" style="display:none;">
-    <g:message code="spinner.alt" default="Loading&hellip;"/>
+<div class="footer" role="contentinfo">
+    <address>
+        Copyright © 2017-2018 TO THE NEW. All rights reserved.
+    </address>
 </div>
 
-<asset:javascript src="application.js"/>
+
+
 
 
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
