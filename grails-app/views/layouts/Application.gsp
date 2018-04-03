@@ -41,58 +41,9 @@
 
                 <li class="col-lg-1 " style="padding: 0px"><a href="#myModal" data-toggle="modal"
                                                               data-target="#myModal"><i class="fa fa-comment-o"
-                                                                                        style="font-size:24px"></i></a>
-                </li>
+                                                                                        style="font-size:24px"></i></a></li>
                 <div id="myModal" class="modal fade" role="dialog">
-                    <div class="modal-dialog">
-
-
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                <h4 class="modal-title">create topic</h4>
-                            </div>
-                            <div class="modal-body">
-                                <form class="form-horizontal" action="#">
-                                    <div class="form-group">
-                                        <label class="control-label col-sm-2" for="name1">name</label>
-                                        <div class="col-sm-10">
-                                            <input type="text" class="form-control" id="name1"  name="name1">
-                                        </div>
-                                    </div>
-
-                                    <div class="dropdown">
-                                        <label class="control-label col-sm-2" for="visibility">visibility:</label>
-
-                                        <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" id="visibility">visibility
-                                            <span class="caret"></span></button>
-                                        <ul class="dropdown-menu">
-                                            <li><a href="#">private</a></li>
-                                            <li><a href="#">public</a></li>
-
-                                        </ul>
-                                    </div>
-
-                                    <br>
-
-                                    <div class="form-group">
-                                        <div class="col-sm-offset-2 col-sm-10">
-                                            <button type="submit" class="btn btn-default">share</button>
-                                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-
-                                        </div>
-                                    </div>
-                                </form>
-
-
-
-                            </div>
-                            <!--<div class="modal-footer">-->
-                            <!--<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>-->
-                            <!--</div>-->
-                        </div>
-
-                    </div>
+                    <g:render template="/topic/create"/>
                 </div>
 
 
@@ -101,51 +52,8 @@
                                                                                         style="font-size:24px"></i></a>
                 </li>
                 <div id="myModal2" class="modal fade" role="dialog">
-                    <div class="modal-dialog">
 
-
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                <h4 class="modal-title">send invitation</h4>
-                            </div>
-                            <div class="modal-body">
-                                <form class="form-horizontal" action="#">
-                                    <div class="form-group">
-                                        <label class="control-label col-sm-2" for="email1">email</label>
-                                        <div class="col-sm-10">
-                                            <input type="email" class="form-control" id="email1"  name="email1">
-                                        </div>
-                                    </div>
-
-                                    <div class="dropdown">
-                                        <label class="control-label col-sm-2" for="visibility1">visibility:</label>
-
-                                        <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" id="visibility1">visibility
-                                            <span class="caret"></span></button>
-                                        <ul class="dropdown-menu">
-                                            <li><a href="#">private</a></li>
-                                            <li><a href="#">public</a></li>
-
-                                        </ul>
-                                    </div>
-
-                                    <br>
-
-                                    <div class="form-group">
-                                        <div class="col-sm-offset-2 col-sm-10">
-                                            <button type="submit" class="btn btn-default">share</button>
-                                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-
-                                        </div>
-                                    </div>
-                                </form>
-
-                            </div>
-
-                        </div>
-
-                    </div>
+                    <g:render template="/topic/email"/>
                 </div>
 
 
@@ -154,61 +62,8 @@
                                                                                         style="font-size:24px"></i></a>
                 </li>
                 <div id="myModal3" class="modal fade" role="dialog">
-                    <div class="modal-dialog">
 
-
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                <h4 class="modal-title">create resource</h4>
-                            </div>
-                            <div class="modal-body">
-                                <form class="form-horizontal" action="#">
-                                    <div class="form-group">
-                                        <label class="control-label col-sm-2" for="link">link:</label>
-                                        <div class="col-sm-10">
-                                            <input type="url" class="form-control" id="link" placeholder="Enter link"
-                                                   name="link">
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="control-label col-sm-2" for="descrip">description:</label>
-                                        <div class="col-sm-10">
-                                            <textarea class="form-control" rows="5" id="descrip"></textarea>
-                                        </div>
-                                    </div>
-                                    <div class="dropdown">
-                                        <label class="control-label col-sm-2" for="topic">topic:</label>
-
-                                        <button class="btn btn-default dropdown-toggle" type="button"
-                                                data-toggle="dropdown" id="topic">topic
-                                            <span class="caret"></span></button>
-                                        <ul class="dropdown-menu">
-                                            <li><a href="#">topictype1</a></li>
-                                            <li><a href="#">topictype2</a></li>
-                                            <li><a href="#">topictype3</a></li>
-
-                                        </ul>
-                                    </div>
-                                    <br>
-
-                                    <div class="form-group">
-                                        <div class="col-sm-offset-2 col-sm-10">
-                                            <button type="submit" class="btn btn-default">share</button>
-                                            <button type="button" class="btn btn-default" data-dismiss="modal">Close
-                                            </button>
-
-                                        </div>
-                                    </div>
-                                </form>
-
-                            </div>
-                            <!--<div class="modal-footer">-->
-                            <!--<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>-->
-                            <!--</div>-->
-                        </div>
-
-                    </div>
+                    <g:render template="/linkResource/create"/>
                 </div>
 
 
@@ -217,60 +72,8 @@
                                                                                         style="font-size:24px"></i></a>
                 </li>
                 <div id="myModal4" class="modal fade" role="dialog">
-                    <div class="modal-dialog">
 
-
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                <h4 class="modal-title">Share document</h4>
-                            </div>
-                            <div class="modal-body">
-                                <form class="form-horizontal" action="#">
-                                    <div class="form-group">
-                                        <label class="control-label col-sm-2" for="document">document</label>
-                                        <div class="col-sm-10">
-                                            <input type="file" class="form-control" id="document" name="document">
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="control-label col-sm-2" for="descrip1">description:</label>
-                                        <div class="col-sm-10">
-                                            <textarea class="form-control" rows="5" id="descrip1"></textarea>
-                                        </div>
-                                    </div>
-                                    <div class="dropdown">
-                                        <label class="control-label col-sm-2" for="topic1">topic:</label>
-
-                                        <button class="btn btn-default dropdown-toggle" type="button"
-                                                data-toggle="dropdown" id="topic1">topic
-                                            <span class="caret"></span></button>
-                                        <ul class="dropdown-menu">
-                                            <li><a href="#">topictype1</a></li>
-                                            <li><a href="#">topictype2</a></li>
-                                            <li><a href="#">topictype3</a></li>
-
-                                        </ul>
-                                    </div>
-                                    <div class="form-group">
-                                        <br>
-                                        <div class="col-sm-offset-2 col-sm-10">
-                                            <button type="submit" class="btn btn-default">share</button>
-                                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-
-                                        </div>
-                                    </div>
-                                </form>
-                            </div>
-
-
-
-
-
-
-                        </div>
-
-                    </div>
+                    <g:render template="/documentResource/create"/>
 
                 </div>
 

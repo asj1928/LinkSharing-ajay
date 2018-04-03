@@ -1,4 +1,4 @@
-<div id="myModal2" class="modal fade" role="dialog">
+
     <div class="modal-dialog">
 
 
@@ -9,33 +9,46 @@
             </div>
             <div class="modal-body">
                 <form class="form-horizontal" action="#">
-                    <div class="form-group">
-                        <label class="control-label col-sm-2" for="email1">email</label>
-                        <div class="col-sm-10">
+                    <div class=" col-lg-12">
+                        <div class="col-lg-2">
+                            <label class="control-label " >Email:</label>
+
+                        </div>
+                        <div class="col-lg-10">
                             <input type="email" class="form-control" id="email1"  name="email1">
                         </div>
                     </div>
 
-                    <div class="dropdown">
-                        <label class="control-label col-sm-2" for="visibility1">visibility:</label>
 
-                        <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" id="visibility1">visibility
-                            <span class="caret"></span></button>
-                        <ul class="dropdown-menu">
-                            <li><a href="#">private</a></li>
-                            <li><a href="#">public</a></li>
+                    <div class="dropdown col-lg-12" >
+                        <br><br>
+                        <div class="col-lg-2">
+                            <label class="control-label " >Topic:</label>
 
-                        </ul>
+                        </div>
+                        <div class="col-lg-10">
+                            <select class="form-control ">
+                                <option value="volvo">topic1</option>
+                                <option value="saab">topic2</option>
+                            </select>
+                        </div>
+
+
                     </div>
-
+                    <br><br>
                     <br>
 
                     <div class="form-group">
-                        <div class="col-sm-offset-2 col-sm-10">
+                        <br><br>
+                        <div class="col-sm-4"></div>
+                        <div class=" col-sm-4">
+                            <br><br>
+
                             <button type="submit" class="btn btn-default">share</button>
                             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
 
                         </div>
+                        <div class="col-sm-4"></div>
                     </div>
                 </form>
 
@@ -44,4 +57,4 @@
         </div>
 
     </div>
-</div>
+
