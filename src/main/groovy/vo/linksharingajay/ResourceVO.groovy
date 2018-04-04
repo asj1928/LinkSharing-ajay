@@ -1,5 +1,6 @@
 package vo.linksharingajay
 
+import linksharingajay.Resource
 import linksharingajay.Topic
 import linksharingajay.User
 
