@@ -1,3 +1,4 @@
+<%@ page import="linksharingajay.Topic" %>
     <div class="modal-dialog">
 
 
@@ -6,8 +7,8 @@
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
                 <h4 class="modal-title">create resource</h4>
             </div>
-            <div class="modal-body">
-                <form class="form-horizontal" action="#">
+            <div class="modal-body row">
+                <g:form controller="linkResource" action="save">
                     <div class=" col-lg-12">
                         <div class="col-lg-2">
                             <label class="control-label " for="link">link:</label>
@@ -26,7 +27,7 @@
                             <label class="control-label " for="descrip">description : </label>
                         </div>
                         <div class="col-lg-12">
-                            <textarea class="form-control" rows="5" id="descrip"></textarea>
+                            <textarea class="form-control" rows="5" id="descrip" name="des"></textarea>
                         </div>
                     </div>
                     <div class="dropdown col-lg-12" >
@@ -36,9 +37,13 @@
 
                         </div>
                         <div class="col-lg-10">
-                            <select class="form-control ">
-                                <option value="volvo">topic1</option>
-                                <option value="saab">topic2</option>
+                            <select class="form-control " name="topic">
+                                <g:set var="list" value="${Topic.findAllByCreatedBy(session.user)}"/>
+                                <g:each in="${list}" var="it">
+
+                                    <option value="${it.name}">${it.name}</option>
+                                </g:each>
+
                             </select>
                         </div>
 
@@ -53,13 +58,13 @@
                         <div class=" col-sm-4">
                             <br><br>
 
-                            <button type="submit" class="btn btn-default">share</button>
+                            <button type="submit" class="btn btn-default">save</button>
                             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
 
                         </div>
                         <div class="col-sm-4"></div>
                     </div>
-                </form>
+                </g:form>
 
             </div>
             <!--<div class="modal-footer">-->
