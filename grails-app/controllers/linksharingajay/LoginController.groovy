@@ -35,7 +35,7 @@ class LoginController {
 
     def logout(){
         session.invalidate()
-        redirect(action:'index')
+        redirect(view:'index')
     }
     def register(){
         User admin = new User(email: "ajay@gmail.com", password:"bogasspass", firstName: "ajay", lastName: "singh", userName: 'asj', photo: 121, admin: true, active: true)

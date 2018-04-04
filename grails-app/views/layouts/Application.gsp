@@ -88,7 +88,7 @@
                         <li><a href="#">users</a></li>
                         <li><a href="#">Topic</a></li>
                         <li><a href="#">post</a></li>
-                        <li><a href="#">logout</a></li>
+                        <li><g:link controller="login" action="logout">logout</g:link></li>
                     </ul>
                 </li>
 

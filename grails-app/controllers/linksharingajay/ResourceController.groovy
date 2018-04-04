@@ -34,4 +34,5 @@ class ResourceController {
         render(ratingInfoVO.averagescore)
     }
 
+
 }

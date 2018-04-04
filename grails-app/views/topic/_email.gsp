@@ -28,7 +28,7 @@
 
                         </div>
                         <div class="col-lg-10">
-                            <select class="form-control ">
+                            <select class="form-control " name="topic">
                                 <g:set var="list" value="${Topic.findAllByCreatedBy(session.user)}"/>
                                 <g:each in="${list}" var="it">
 
