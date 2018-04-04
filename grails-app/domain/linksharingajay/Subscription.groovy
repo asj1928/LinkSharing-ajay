@@ -8,6 +8,7 @@ class Subscription {
     Date dateCreated
     Date lastUpdated
 
+    static transients = ['getSubscribedTopics']
 
 
     static belongsTo = [user:User, topic:Topic ]
@@ -24,5 +25,19 @@ class Subscription {
         seriousness defaultValue: Seriousness.SERIOUS
         topic fetch:'join'
         user fetch: 'join'
+    }
+    static List getSubscribedTopics(User user) {
+        List<Subscription> subscribedTopics = Subscription.findAllByUser(user)
+        List<Topic> result = []
+// List<String> result = []
+
+        subscribedTopics.each {
+            Topic topic = Topic.findByCreatedByAndTopicName(it.user, it.topic.topicName)
+            if (!topic) {
+// result.add(it.topic.topicName)
+                result.add(it.topic)
+            }
+        }
+        return result
     }
 }

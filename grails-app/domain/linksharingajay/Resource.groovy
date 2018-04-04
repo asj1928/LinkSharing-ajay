@@ -2,6 +2,7 @@ package linksharingajay
 
 import co.linksharingajay.ResourceSearchCO
 import vo.linksharingajay.RatingInfoVO
+import vo.linksharingajay.ResourceVO
 
 abstract class Resource {
     String description
@@ -67,22 +68,36 @@ abstract class Resource {
         ratingInfoVO1.totalVotes = totalVotes(resource)
         return ratingInfoVO1
     }
-
-    List<Resource> topPost() {
-
-        List resourceIds = ResourceRating.createCriteria().list {
-            projections {
-                property('resource.id')
+    
+    static List<ResourceVO> getTopPost(){
+        List<ResourceVO> topPosts = ResourceRating.createCriteria().list{
+            projections{
+                createAlias('resource', 'r')
+                groupProperty('r.id')
+                property('r.createdBy')
+                property('r.topic')
+                count('r.id', 'count')
             }
-            groupProperty('resource.id')
-            count('resource.id', 'resourceCount')
-            order('resourceCount', 'desc')
+            order('count', 'desc')
             maxResults(5)
         }
-
-        List<Resource> resources = Resource.getAll(resourceIds)
-        return resources
-
-
+        List result = []
+        topPosts.each{
+            result.add(new ResourceVO(id: it[0],createdBy: it[1],topic: it[2],count: it[3]))
+        }
+        println("Returning top posts : " + result)
+        return result
     }
+
+    static List<Resource> getRecentShares(){
+
+        List<Resource> recentShares = Resource.createCriteria().list {
+            order("dateCreated", "desc")
+            maxResults(2)
+
+        }
+        println("about to return")
+        return recentShares
+    }
+
 }

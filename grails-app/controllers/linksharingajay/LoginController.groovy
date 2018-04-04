@@ -56,6 +56,35 @@ class LoginController {
 
         redirect(action: "index")
     }
+    def validateForgotPassword(){
+        println(params.email1)
+        println(params.cpass)
+        println(params.pass1)
+        User u= User.findByEmail(params.email1)
+        User u1=User.get(u.id)
+        println(u1)
+        println(u.password)
+        if(params.cpass==params.pass1)
+        if(u1!=null){
+            u1.password=params.cpass
+            if(u.save()){
+                println("pass changed")
+                println(u.password)
+                redirect(controller:'login', action: 'index')
+
+            }else {
+                println("pass didnt changed")
+                redirect(controller:'login', action: 'index')
+
+            }
+        }else {
+            println("user is not registered")
+            redirect(controller:'login', action: 'index')
+
+        }
+
+
+    }
 
 }
 

@@ -49,6 +49,31 @@ class User {
         }
     }
 
+    List<Topic> getSubscribedTopic() {
+        List<Topic> subscribedTopics = []
+        if(this.subscriptions){
+            this.subscriptions.each {
+                if (it.topic.createdBy != it.user)
+                    subscribedTopics.add(it.topic)
+            }
+        }
+        return subscribedTopics
+    }
+    Integer getSubscriptionCount() {
+        if (this.subscriptions)
+            return this.subscriptions.size()
+        else
+            return 0
+    }
+
+    Integer getTopicCount() {
+        if (topics)
+            return this.topics.size()
+        else
+            return 0
+    }
+
+
 
     @Override
     public String toString() {

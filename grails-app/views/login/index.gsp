@@ -21,53 +21,10 @@
 <g:message message="${flash.message}"></g:message>
 <div class=" container">
     <div class="col-lg-6">
+        %{--recent share--}%
         <div class="col-lg-12" style="margin-top: 25px">
 
-            <div class=" panel panel-default     ">
-                <div class="panel-heading " style="background: #1b1e21">
-                    <p>
-                    <h3 style="color:white">Recent Shares</h3></p>
-                </div>
-                <div class="panel-body  ">
-                    <div class="col-lg-12">
-                        <div class="col-lg-3" style="margin-top: 25px">
-                            <i class="fa fa-user-circle fa-5x" aria-hidden="true"></i>
-
-                        </div>
-                        <div class="col-lg-9">
-                            <p><h6>ajay singh jodha  <span style="color: darkgray">@asjodha22</span><span class="pull-right" style="margin-right: 0px;color: blue">grails</span></h6> </p>
-                            <p><h5>Lorem ipsum turpis nam auctor elementum tellus cras maecenas leo potenti ligula, eleifend cras curae proin augue donec quam malesuada dictum placerat inceptos blandit fringilla nisi ullamcorper eu habitant sodales curabitur euismod dictum in.</h5></p>
-
-                            <i class="fa fa-facebook-square fa-lg" aria-hidden="true"></i>
-                            <i class="fa fa-google-plus fa-lg" aria-hidden="true"></i>
-                            <i class="fa fa-twitter-square fa-lg" aria-hidden="true"></i>
-
-                        </div>
-                    </div>
-
-                    <div class="col-lg-12">
-                        <hr>
-                    </div>
-                    <div class="col-lg-12">
-                        <div class="col-lg-3" style="margin-top: 25px">
-                            <i class="fa fa-user-circle fa-5x" aria-hidden="true"></i>
-
-                        </div>
-                        <div class="col-lg-9">
-                            <p><h6>ajay singh jodha  <span style="color: darkgray">@asjodha22</span><span class="pull-right" style="margin-right: 0px;color: blue">grails</span></h6> </p>
-                            <p><h5>Lorem ipsum turpis nam auctor elementum tellus cras maecenas leo potenti ligula, eleifend cras curae proin augue donec quam malesuada dictum placerat inceptos blandit fringilla nisi ullamcorper eu habitant sodales curabitur euismod dictum in.</h5></p>
-
-                            <i class="fa fa-facebook-square fa-lg" aria-hidden="true"></i>
-                            <i class="fa fa-google-plus fa-lg" aria-hidden="true"></i>
-                            <i class="fa fa-twitter-square fa-lg" aria-hidden="true"></i>
-
-
-                        </div>
-                    </div>
-
-
-                </div>
-            </div>
+        <g:render template="recntShare"/>
 
         </div>
         <div class="col-lg-12" style="margin-top: 25px">
@@ -142,15 +99,20 @@
 
                         </div>
                         <div class="col-lg-12"></div>
-                        <div class="form-group col-lg-5" >
-                            <p><a href="#">Forgot Password</a></p>
-                        </div>
                         <div  class="form-group col-lg-10">
                             <input type="submit" class="form-control btn-primary">
                         </div>
 
 
                     </g:form>
+                    <div class=" col-lg-5" >
+                        <p><a  href="#fpass" data-toggle="modal"
+                               data-target="#fpass">Forgot Password</a></p>
+                        <div id="fpass" class="modal fade" role="dialog">
+                            <g:render template="/user/forgotPassword"/>
+                        </div>
+                    </div>
+
 
                 </div>
             </div>

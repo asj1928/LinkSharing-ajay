@@ -40,34 +40,35 @@ class Topic {
         sort("name": "asc")
         subscriptions lazy: false
     }
-    static List<TopicVO> getTrendingTopics(){
-        List topicList = Resource.createCriteria().list {
+    static getTrendingTopics() {
+        List<Topic> trendingTopics = Resource.createCriteria().list() {
             projections {
                 createAlias('topic', 't')
                 groupProperty('t.id')
-                property('t.visibility')
-                count('t.id', 'topicCount')
-                property('t.createdBy')
                 property('t.name')
+                property('t.visibility')
+                count('t.id', 'count')
+                property('t.createdBy')
             }
-            order('topicCount', 'desc')
-            eq('t.visibility',Visibility.PUBLIC)
+            eq('t.visibility', Visibility.PUBLIC)
+            order('count', 'desc')
             order('t.name', 'asc')
             maxResults(5)
         }
 
+        return trendingTopics
+    }
 
-        List topicVOList = []
-        topicList.each {
+    List<User> getSubscribedUsers(){
+        List<User> subscribedUsers=this.subscriptions.user.toList()
+        return subscribedUsers
+    }
 
-            topicVOList.add(new TopicVO(id: it[0], name: it[1], visibility: it[2], count: it[3], createdBy: it[4]))
-
-
-        }
-        return topicVOList
-
-
-
+    Integer getSubscriptionCount(){
+        if(subscriptions)
+            return subscriptions.size()
+        else
+            return 0
     }
 
     @Override
