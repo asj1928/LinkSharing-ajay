@@ -315,7 +315,9 @@
                                 <i class="fa fa-facebook-square fa-lg" aria-hidden="true"></i>
                                 <i class="fa fa-google-plus fa-lg" aria-hidden="true"></i>
                                 <i class="fa fa-twitter-square fa-lg" aria-hidden="true"></i>
-                                <a href="#" class="pull-right">View Post</a>
+                                <span class="pull-right" style="margin-right: 0px;color: #007efc"><a href="#" style="color: #007efc;font-size: small">Download</a>
+                                    <a href="#" style="color: #007efc;font-size: small"> Mark as Read</a>
+                                    <a href="#" style="color: #007efc;font-size: small"> View Topic</a></span>
                             </div>
                         </div>
 
