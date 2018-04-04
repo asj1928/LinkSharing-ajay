@@ -1,5 +1,6 @@
+<%@ page import="linksharingajay.Topic" %>
 
-    <div class="modal-dialog">
+<div class="modal-dialog">
 
 
         <div class="modal-content">
@@ -28,8 +29,12 @@
                         </div>
                         <div class="col-lg-10">
                             <select class="form-control ">
-                                <option value="volvo">topic1</option>
-                                <option value="saab">topic2</option>
+                                <g:set var="list" value="${Topic.findAllByCreatedBy(session.user)}"/>
+                                <g:each in="${list}" var="it">
+
+                                    <option value="${it}">${it.name}</option>
+                                </g:each>
+
                             </select>
                         </div>
 

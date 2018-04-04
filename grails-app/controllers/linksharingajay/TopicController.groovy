@@ -23,7 +23,16 @@ class TopicController {
 
     }
 
-    def save(Topic topic,String seriousness){
+    def save(){
+        Topic topic=new Topic()
+        topic.name=params.name1
+        if(params.visibility=="public"){
+            topic.visibility=Visibility.PUBLIC
+        }
+        else {
+            topic.visibility=Visibility.PRIVATE
+
+        }
         topic.createdBy=session.user
         if(topic.save()){
             flash.message="Saved"

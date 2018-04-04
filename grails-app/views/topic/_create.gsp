@@ -22,9 +22,9 @@
 
                         </div>
                         <div class="col-lg-10">
-                        <select class="form-control ">
-                            <option value="volvo">public</option>
-                            <option value="saab">private</option>
+                        <select class="form-control " name="visibility">
+                            <option value="public">public</option>
+                            <option value="private">private</option>
                         </select>
                         </div>
 
