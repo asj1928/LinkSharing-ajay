@@ -7,12 +7,8 @@ class TopicController {
 
     def index() { }
 
-    def show(ResourceSearchCO resourceSearchCO){
-        def topic = Resource.search(resourceSearchCO).list()
-        render("CreatedBy- $topic.createdby.firstname Topicname- $topic.name")
-        User user=User.read(session.user.id)
-        //println user.topics
-        render(user.topics)
+    def show(){
+        render "${}"
     }
 
     def delete(Long id){
