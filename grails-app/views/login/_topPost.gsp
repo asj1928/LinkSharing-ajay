@@ -32,6 +32,9 @@
             %{--${itr}--}%
 
         %{--</g:each>--}%
+        <g:each in="${Resource.getTopPost()}" var="topPosts">
+
+        </g:each>
         <div class="col-lg-12">
             <div class="col-lg-3" style="margin-top: 25px">
                 <i class="fa fa-user-circle fa-5x" aria-hidden="true"></i>

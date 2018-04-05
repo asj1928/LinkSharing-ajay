@@ -68,7 +68,7 @@ abstract class Resource {
         ratingInfoVO1.totalVotes = totalVotes(resource)
         return ratingInfoVO1
     }
-    
+
     static List<ResourceVO> getTopPost(){
         List<ResourceVO> topPosts = ResourceRating.createCriteria().list{
             projections{
