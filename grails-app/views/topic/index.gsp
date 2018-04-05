@@ -8,7 +8,6 @@
 <%@ page import="linksharingajay.Resource; linksharingajay.Topic" contentType="text/html;charset=UTF-8" %>
 <html>
 <head>
-    <title></title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -16,8 +15,8 @@
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-    <meta name="layout" content="Application">
 
+    <meta name="layout" content="Application"/>
     <style>
     * {
         box-sizing: border-box;
@@ -99,11 +98,6 @@
     }
     </style>
 </head>
-<g:set var="top" value="${Topic.findById(params.id)}"/>
-%{--<g:each in="res" var="itr">--}%
-
-
-%{--</g:each>--}%
 
 <body>
 <div class="container">
@@ -112,7 +106,7 @@
             <div class=" panel panel-default     ">
                 <div class="panel-heading " style="background: #1b1e21">
                     <p>
-                    <h3 style="color:white">Topic:${res.topic.name}</h3></p>
+                    <h3 style="color:white">Topic:"Grails"</h3></p>
                 </div>
                 <div class="panel-body  ">
                     <div class="col-lg-12">
@@ -122,16 +116,16 @@
                         </div>
                         <div class="col-lg-9">
                             <div class="col-lg-12">
-                                <h5><a href="#">${top.name}</a> <span STYLE="color: #9d9d9d ">(${top.visibility})</span></h5>
+                                <h5><a href="#">Grails</a> <span STYLE="color: #9d9d9d ">(PRIVATE)</span></h5>
                             </div>
                             <div class="col-lg-12">
                                 <div class="col-lg-5">
-                                    <p style="color: #9d9d9d">@${top.createdBy.userName}</p>
+                                    <p style="color: #9d9d9d">@ajay</p>
                                     <p1><a href="#">subscribe</a></p1>
                                 </div>
                                 <div class="col-lg-5">
                                     <p style="color: #9d9d9d">subscriptions</p>
-                                    <p1 style="color: #2e6da4">${top.subscriptions.size() }</p1>
+                                    <p1 style="color: #2e6da4">5</p1>
 
 
                                 </div>
@@ -304,7 +298,6 @@
     </div>
 
 </div>
-
 
 
 </body>
