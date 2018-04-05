@@ -36,27 +36,22 @@ class Topic {
 
 
     }
+    static getTrendingTopics() {
+        List<Topic> trendingTopics = Resource.createCriteria().list{
+            projections {
+                groupProperty('topic')
+                count('topic.id', 'count')
+            }
+            order('count', 'desc')
+            maxResults(5)
+        }
+        List <Topic> result=[]
+        trendingTopics.each {result.add(it[0])}
+        return result
+    }
     static mapping = {
         sort("name": "asc")
         subscriptions lazy: false
-    }
-    static getTrendingTopics() {
-        List<Topic> trendingTopics = Resource.createCriteria().list() {
-            projections {
-                createAlias('topic', 't')
-                groupProperty('t.id')
-                property('t.name')
-                property('t.visibility')
-                count('t.id', 'count')
-                property('t.createdBy')
-            }
-            eq('t.visibility', Visibility.PUBLIC)
-            order('count', 'desc')
-            order('t.name', 'asc')
-            maxResults(5)
-        }
-
-        return trendingTopics
     }
 
     List<User> getSubscribedUsers(){
