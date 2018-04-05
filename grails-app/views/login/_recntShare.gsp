@@ -17,12 +17,14 @@
 
                 %{--detail--}%
                 <div class="col-lg-9">
-                    <p><h6>${itr.user.firstName} ${itr.user.lastName}   <span style="color: darkgray">@${itr.user.userName} </span><span class="pull-right" style="margin-right: 0px;color: blue"><g:link controller="topic" action="show"  params="[topic:itr]" >${itr.topic.name}</g:link> </span></h6> </p>
+                    <p><h6>${itr.user.firstName} ${itr.user.lastName}   <span style="color: darkgray">@${itr.user.userName} </span><span class="pull-right" style="margin-right: 0px;color: blue"><a href="${createLink(controller: 'topic' ,action: 'index',id: itr.topic.id)}" >${itr.topic.name}</a> </span></h6> </p>
                     <p><h5>${itr.description} </h5></p>
 
                     <i class="fa fa-facebook-square fa-lg" aria-hidden="true"></i>
                     <i class="fa fa-google-plus fa-lg" aria-hidden="true"></i>
                     <i class="fa fa-twitter-square fa-lg" aria-hidden="true"></i>
+                <span class="pull-right" style="margin-right: 0px;color: #007efc">
+                    <a href="#" style="color: #007efc;font-size: small"> View Post</a></span>
 
                 </div>
             </div>

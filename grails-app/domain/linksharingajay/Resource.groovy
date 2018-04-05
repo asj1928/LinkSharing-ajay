@@ -71,13 +71,16 @@ abstract class Resource {
 
     static List<ResourceVO> getTopPost(){
         List<ResourceVO> topPosts = ResourceRating.createCriteria().list{
+            createAlias('resource','r')
+            createAlias('r.topic','tr')
             projections{
-                createAlias('resource', 'r')
                 groupProperty('r.id')
-                property('r.createdBy')
+                property('r.user')
                 property('r.topic')
                 count('r.id', 'count')
             }
+            eq('tr.visibility',Visibility.PUBLIC)
+
             order('count', 'desc')
             maxResults(5)
         }
