@@ -6,6 +6,7 @@ import spock.lang.Specification
 class LinkResourceSpec extends Specification implements DomainUnitTest<LinkResource> {
 
     def setup() {
+
     }
 
     def cleanup() {
@@ -17,63 +18,64 @@ class LinkResourceSpec extends Specification implements DomainUnitTest<LinkResou
     }
     void "validate and test linkresource"(){
         setup:
-        User user=new User(email: "askjoa@gmail",userName: "asj123",name:"ajaysingh" ,password:"harinder" ,firstName: "ajay",lastName: "jodha")
-
-        Topic topic=new Topic(name:"topic",visibility: Visibility.PUBLIC, createdBy: user)
-
-        Resource linkResource=new LinkResource(description: des,url: url,topic: topic,createdBy: user)
-
+        LinkResource linkResource=new LinkResource()
+        linkResource.description="description of link resource"
+        linkResource.url="http://learning.tothenew.com/ttn/session/show/?sessionId=707"
 
         when:
         def result=linkResource.validate()
 
         then:
-        result==valid
+        result==true
 
-        where:
-        des|url|valid
-        "description of link resource"|"http://learning.tothenew.com/ttn/session/show/?sessionId=707"|true
-        null|"http://learning.tothenew.com/ttn/session/show/?sessionId=707"|false
-        "description of link resource"|"kjdckasckjscjkajnc"|false
 
     }
 
-    void "linkresource validation with null user"(){
+    def " to string of linkResource"(){
         setup:
-        User user=new User(email: "askjoa@gmail",userName: "asj123",name:"ajaysingh" ,password:"harinder" ,firstName: "ajay",lastName: "jodha")
+        String email = "asjodha22@gamil.com"
+        String password = 'harinder'
+        User user = new User(email: email,userName:"asj1928",password:password, firstName: "ajay", lastName: "jodha",admin:false,active:true)
+        Topic topic = new Topic(name:"topic1    ",visibility: Visibility.PUBLIC,createdBy: user)
+        LinkResource linkResource=new LinkResource(url:"http://learning.tothenew.com/ttn/session/show/?sessionId=708", user:user,topic: topic,description: "description for linkresource")
 
-        Topic topic=new Topic(name:"topic",visibility: Visibility.PUBLIC, createdBy: user)
-        Resource linkResource=new LinkResource(description: "description of link resource",url: "http://learning.tothenew.com/ttn/session/show/?sessionId=707",topic: null,createdBy: user)
         when:
-        boolean result=linkResource.validate()
+        linkResource.save()
+        then:
+        linkResource.toString()==
+                "LinkResource{url='${linkResource.url}'}"
+
+    }
+    def " valid url"(){
+        setup:
+        String email = "ajay.singh@tothenew.com"
+        String password = '1928'
+        User user = new User(email: email,userName:"ajay",password:password, firstName: "ajay", lastName: "jodha",admin:false,active:true)
+        Topic topic = new Topic(name:"topic1",visibility: Visibility.PUBLIC,createdBy: user)
+
+        when:
+        LinkResource linkResource=new LinkResource(url:"www.google.com", user:user,topic: topic,description: "thi is the url for google ")
+
+        topic.addToResources(linkResource)
+        user.addToTopics(topic)
+        linkResource.validate()
+        user.save()
 
         then:
-        result==false
+        User.count==1
 
-
-
-
-
-    }
-
-    void "linkresource validation with null topic"(){
-        setup:
-        User user=new User(email: "askjoa@gmail",userName: "asj123",name:"ajaysingh" ,password:"harinder" ,firstName: "ajay",lastName: "jodha")
-
-        Topic topic=new Topic(name:"topic",visibility: Visibility.PUBLIC, createdBy: user)
-        Resource linkResource=new LinkResource(description: "description of link resource",url: "http://learning.tothenew.com/ttn/session/show/?sessionId=707",topic: topic,createdBy: null)
         when:
-        boolean result=linkResource.validate()
+        LinkResource linkResource1=new LinkResource(url:"www", user:user,topic: topic,description: "invalid url")
+
+        topic.addToResources(linkResource1)
+        user.addToTopics(topic)
+        user.addToResources(linkResource1)
+        linkResource1.validate()
+        user.save()
 
         then:
-        result==false
-
-
-
-
+        linkResource1.errors.getFieldErrorCount('url')==1
 
     }
-
-
 
 }
