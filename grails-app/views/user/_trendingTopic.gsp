@@ -8,9 +8,10 @@
     </div>
     <div class="panel-body">
         <div class="row">
-            <g:each in="${Topic.getTrendingTopics()}" var="trendingTopic">
+            <g:each in="${Topic.getTrendingTopics()}" var="itr">
 
-            <div class="col-sm-12">
+
+                <div class="col-sm-12">
 
                 <div class="row">
 
@@ -19,26 +20,26 @@
 
                     </div>
                     <div class="col-sm-9">
-                        <a href="#" class="pull-left">Grails</a>
+                        <a href="${createLink(controller: 'topic' ,action: 'index',id: itr.id)}" >${itr.name}</a>
                         <br>
                         <div class="row">
 
                             <div class="col-sm-6">
-                                <h6 class="text-muted">@uday</h6>
+                                <h6 class="text-muted">@${itr.createdBy.userName}</h6>
                                 <a href="#">Unsubscribe</a>
                             </div>
 
 
                             <div class="col-sm-3">
                                 <h6 class="text-muted pull-left">Subscriptions</h6>
-                                <h6 class="text-primary">50</h6>
+                                <h6 class="text-primary">${itr.subscriptions.size()}</h6>
                             </div>
 
                             <div class="col-sm-3">
                                 <h6 class="text-muted  pull-right">Post
                                     <br>
                                     <br>
-                                    <p class="text-primary">30</p>
+                                    <p class="text-primary">${itr.resources.size()}</p>
                                 </h6>
 
                             </div>
@@ -50,6 +51,9 @@
 
 
             </div>
+                <div class="col-lg-12">
+                    <hr>
+                </div>
             </g:each>
         </div>
     </div>

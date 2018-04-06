@@ -5,7 +5,7 @@
   Time: 3:46 PM
 --%>
 
-<%@ page import="linksharingajay.Resource; linksharingajay.Topic" contentType="text/html;charset=UTF-8" %>
+<%@ page import="linksharingajay.Subscription; linksharingajay.User; linksharingajay.Resource; linksharingajay.Topic" contentType="text/html;charset=UTF-8" %>
 <html>
 <head>
     <meta charset="UTF-8">
@@ -100,197 +100,195 @@
 </head>
 
 <body>
+<g:set var="itr" value="${Topic.findById(params.id)}"/>
+
 <div class="container">
     <div class="col-lg-6">
         <div class="col-lg-12">
             <div class=" panel panel-default     ">
                 <div class="panel-heading " style="background: #1b1e21">
                     <p>
-                    <h3 style="color:white">Topic:"Grails"</h3></p>
+
+                    <h3 style="color:white">Topic:" ${itr.name}"</h3></p>
                 </div>
+
                 <div class="panel-body  ">
                     <div class="col-lg-12">
                         <div class="col-lg-3" style="margin-top: 25px">
                             <i class="fa fa-user-circle fa-5x" aria-hidden="true"></i>
 
                         </div>
+
                         <div class="col-lg-9">
                             <div class="col-lg-12">
-                                <h5><a href="#">Grails</a> <span STYLE="color: #9d9d9d ">(PRIVATE)</span></h5>
+                                <h5><a href="#">${itr.name}</a> <span STYLE="color: #9d9d9d ">(${itr.visibility})</span>
+                                </h5>
                             </div>
+
                             <div class="col-lg-12">
                                 <div class="col-lg-5">
-                                    <p style="color: #9d9d9d">@ajay</p>
-                                    <p1><a href="#">subscribe</a></p1>
+                                    <p style="color: #9d9d9d">@${itr.createdBy.userName}</p>
+                                    <g:if test="${session.user}">
+                                        <p1><a href="#">subscribe</a></p1>
+                                    </g:if>
                                 </div>
+
                                 <div class="col-lg-5">
                                     <p style="color: #9d9d9d">subscriptions</p>
-                                    <p1 style="color: #2e6da4">5</p1>
-
+                                    <p1 style="color: #2e6da4">${itr.subscriptions.size()}</p1>
 
                                 </div>
+
                                 <div class="col-lg-2">
                                     <p style="color: #9d9d9d">post</p>
-                                    <p1 style="color: #2e6da4">5</p1>
+                                    <p1 style="color: #2e6da4">${itr.resources.size()}</p1>
                                 </div>
 
                             </div>
-
 
                         </div>
                     </div>
-
 
                 </div>
             </div>
 
-
         </div>
+        <g:set var="uitr" value="${Subscription.findAllByTopic(itr)}"/>
+
+
+
+
+
         <div class="col-lg-12">
             <div class=" panel panel-default     ">
                 <div class="panel-heading " style="background: #1b1e21">
                     <p>
-                    <h3 style="color:white">User:"Grails"</h3></p>
+
+                    <h3 style="color:white">User:"${itr.name}"</h3></p>
                 </div>
+
                 <div class="panel-body  ">
-                    <div class="col-lg-12">
-                        <div class="col-lg-3" style="margin-top: 25px">
-                            <i class="fa fa-user-circle fa-5x" aria-hidden="true"></i>
+                    <g:each in="${uitr}" var="sub">
 
-                        </div>
-                        <div class="col-lg-9">
-                            <div class="col-lg-12">
-                                <h5> ajay singh jodah </h5>
-                                <p STYLE="color: #9d9d9d ">@ajay</p>
+                        <div class="col-lg-12">
+                            <div class="col-lg-3" style="margin-top: 25px">
+                                <i class="fa fa-user-circle fa-5x" aria-hidden="true"></i>
+
                             </div>
-                            <div class="col-lg-12">
-                                <hr>
-                            </div>
-                            <div class="col-lg-12">
-                                <div class="col-lg-6">
-                                    <p style="color: #9d9d9d">subscriptions</p>
-                                    <p1><a href="#">50</a></p1>
-                                </div>
-                                <div class="col-lg-6">
-                                    <p style="color: #9d9d9d">topics</p>
-                                    <p1 style="color: #2e6da4">30</p1>
 
+                            <div class="col-lg-9">
+                                <div class="col-lg-12">
+                                    <h5>${sub.user.firstName} ${sub.user.lastName}</h5>
 
+                                    <p STYLE="color: #9d9d9d ">@${sub.user.userName}</p>
                                 </div>
 
-
-                            </div>
-
-
-                        </div>
-                    </div>
-                    <div class="col-lg-12">
-                        <hr>
-                    </div>
-                    <div class="col-lg-12">
-                        <div class="col-lg-3" style="margin-top: 25px">
-                            <i class="fa fa-user-circle fa-5x" aria-hidden="true"></i>
-
-                        </div>
-                        <div class="col-lg-9">
-                            <div class="col-lg-12">
-                                <h5> ajay singh jodah </h5>
-                                <p STYLE="color: #9d9d9d ">@ajay</p>
-                            </div>
-                            <div class="col-lg-12">
-                                <hr>
-                            </div>
-                            <div class="col-lg-12">
-                                <div class="col-lg-6">
-                                    <p style="color: #9d9d9d">subscriptions</p>
-                                    <p1><a href="#">50</a></p1>
+                                <div class="col-lg-12">
+                                    <hr>
                                 </div>
-                                <div class="col-lg-6">
-                                    <p style="color: #9d9d9d">topics</p>
-                                    <p1 style="color: #2e6da4">30</p1>
 
+                                <div class="col-lg-12">
+                                    <div class="col-lg-6">
+                                        <p style="color: #9d9d9d">subscriptions</p>
+                                        <p1><a href="#">${sub.user.subscriptions.size()}</a></p1>
+                                    </div>
+
+                                    <div class="col-lg-6">
+                                        <p style="color: #9d9d9d">topics</p>
+                                        <p1 style="color: #2e6da4">${sub.user.topics.size()}</p1>
+
+                                    </div>
 
                                 </div>
 
-
                             </div>
-
-
                         </div>
-                    </div>
 
+                        <div class="col-lg-12">
+                            <hr>
+                        </div>
+                    </g:each>
 
                 </div>
             </div>
 
         </div>
     </div>
+
+
     <div class="col-lg-6">
         <div class="col-lg-12">
             <div class="col-lg-12">
                 <div class=" panel panel-default     ">
                     <div class="panel-heading col-lg-12" style="background: #1b1e21;">
-                        <div class="col-lg-4">
-                            <h3 style="color:white">Posts:"Grails"</h3>
+                        <div class="col-lg-12">
+                            <h3 style="color:white">Posts:"${itr.name}"</h3>
                         </div>
 
-                        <div class="col-lg-8">
-                            <div class="topnav pull-rigth " style="background-color: #1b1e21">
-
-                                <div class="search-container">
-                                    <form action="/action_page.php">
-                                        <input type="text" placeholder="Search.." name="search">
-                                        <button type="submit" style="background-color: #1b1e21;margin-right: 0px"><i
-                                                class="fa fa-search"
-                                                style="font-size:25px;color:white;background-color: #1b1e21"></i>
+                        <div class="col-lg-12">
+                            <div class="col-lg-2"></div>
+                            <div class="col-lg-10  ">
+                                <form class="form-inline col-lg-12   " style="margin-top: 12px">
+                                    <div class="form-group">
+                                        <input class="form-control" type="search" placeholder="search..">
+                                        <button type=" button " class="btn  btn-default">
+                                            <span class="glyphicon glyphicon-search"></span>
                                         </button>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
+                                    </input>
 
+                                    </div>
+
+                                </form>
+                            </div>
+
+                        </div>
 
                     </div>
+
                     <div class="panel-body  ">
-                        <div class="col-lg-12">
-                            <div class="col-lg-3" style="margin-top: 25px">
-                                <i class="fa fa-user-circle fa-5x" aria-hidden="true"></i>
 
-                            </div>
-                            <div class="col-lg-9">
-                                <div class="col-sm-12">
-                                    <br>
+                        <g:set var="res" value="${Resource.findByTopic(itr)}"/>
+                        <g:each in="${res}" var="rIt">
+                            <div class="col-lg-12">
+                                <div class="col-lg-3" style="margin-top: 25px">
+                                    <i class="fa fa-user-circle fa-5x" aria-hidden="true"></i>
 
-                                    <span>Uday Pratap Singh &nbsp;&nbsp;&nbsp;&nbsp;<small class="text-muted">@Uday  5min</small>
-
-                                        <a href="#" class="pull-right">Grails</a>
-                                        <br><br>
-                                        <div class="col-lg-12">
-                                            <p>akjbcadbcajncanclkaccksdm csdlndcskdncpsdmdc sdlcnklsdclkddnc sdlcnsdmcpsdpmc esdlc ldnclksdncsld sdlcnsdcklsdcklsdnc scsdncsclsd csldnfklfc </p>
-                                        </div>
-
-
-
-                                    </span>
-                                    <div>
-                                        <i class="fa fa-facebook-square fa-lg" aria-hidden="true"></i>
-                                        <i class="fa fa-google-plus fa-lg" aria-hidden="true"></i>
-                                        <i class="fa fa-twitter-square fa-lg" aria-hidden="true"></i>
-                                        <span class="pull-right" style="margin-right: 0px;color: #007efc"><a href="#"
-                                                                                                             style="color: #007efc;font-size: 75%">Download</a>
-                                            <a href="#" style="color: #007efc;font-size: 75%"> Mark as Read</a>
-                                            <a href="#" style="color: #007efc;font-size: 75%"> View Topic</a></span>
-                                    </div>
                                 </div>
 
+                                <div class="col-lg-9">
+                                    <div class="col-sm-12">
+                                        <br>
 
+                                        <span>${res.user.firstName} ${res.user.lastName}  &nbsp;&nbsp;&nbsp;&nbsp;<small
+                                                class="text-muted">@${res.user.userName}  </small>
+
+                                            <a href="#" class="pull-right">Grails</a>
+                                            <br><br>
+
+                                            <div class="col-lg-12">
+                                                <p>${res.description}</p>
+                                            </div>
+
+                                        </span>
+
+                                        <div>
+                                            <i class="fa fa-facebook-square fa-lg" aria-hidden="true"></i>
+                                            <i class="fa fa-google-plus fa-lg" aria-hidden="true"></i>
+                                            <i class="fa fa-twitter-square fa-lg" aria-hidden="true"></i>
+                                            <span class="pull-right" style="margin-right: 0px;color: #007efc"><a href="#"
+                                                                                                                 style="color: #007efc;font-size: 75%">Download</a>
+                                                <a href="#" style="color: #007efc;font-size: 75%">Mark as Read</a>
+                                                <a href="#" style="color: #007efc;font-size: 75%">View Topic</a></span>
+                                        </div>
+                                    </div>
+
+                                </div>
                             </div>
-                        </div>
+                        </g:each>
 
 
                     </div>
                 </div>
-
 
             </div>
 
@@ -298,7 +296,6 @@
     </div>
 
 </div>
-
 
 </body>
 </html>
