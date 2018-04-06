@@ -29,12 +29,10 @@ class Subscription {
     static List getSubscribedTopics(User user) {
         List<Subscription> subscribedTopics = Subscription.findAllByUser(user)
         List<Topic> result = []
-// List<String> result = []
 
         subscribedTopics.each {
-            Topic topic = Topic.findByCreatedByAndTopicName(it.user, it.topic.topicName)
+            Topic topic = Topic.findByCreatedByAndName(it.user, it.topic.name)
             if (!topic) {
-// result.add(it.topic.topicName)
                 result.add(it.topic)
             }
         }
