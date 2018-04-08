@@ -20,7 +20,7 @@
                         <i class="fa fa-google-plus fa-lg" aria-hidden="true"></i>
                         <i class="fa fa-twitter-square fa-lg" aria-hidden="true"></i>
                         <span class="pull-right" style="margin-right: 0px;color: #007efc"><a href="#" style="color: #007efc;font-size: small">Download</a>
-                            <a href="#" style="color: #007efc;font-size: small"> <ls:checkRead isRead="true"></ls:checkRead></a>
+                            <a href="#" style="color: #007efc;font-size: small"> <ls:checkRead isRead="false"></ls:checkRead></a>
                             <a href="#" style="color: #007efc;font-size: small"> View Topic</a></span>
                     </div>
                 </div>

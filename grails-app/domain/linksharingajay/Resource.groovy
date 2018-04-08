@@ -18,13 +18,12 @@ abstract class Resource {
         description(type: 'text')
     }
     static namedQueries = {
-        search {
-            ResourceSearchCO resourceSearchCO ->
-                if (resourceSearchCO.topicId)
-                    eq('topic.id', resourceSearchCO.topicId)
-                if (resourceSearchCO.visibility)
-                    eq('topic.visibility', resourceSearchCO.visibility)
 
+        search{ ResourceSearchCO co ->
+            'topic'{
+                eq('visibility',co.visibility)
+            }
+            eq('topic.id',co.topicId)
         }
     }
 
@@ -102,5 +101,7 @@ abstract class Resource {
         println("about to return")
         return recentShares
     }
+
+
 
 }

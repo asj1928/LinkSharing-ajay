@@ -26,9 +26,9 @@
             <ul class="nav navbar-nav col-lg-12">
                 <!--<li class="col-lg-1"></li>-->
                 <li class="col-lg-5 ">
-                    <form class="form-inline col-lg-12 " style="margin-top: 12px">
+                    <g:form controller="resource" action="searchResource" class="form-inline col-lg-12 " style="margin-top: 12px">
                         <div class="form-group">
-                            <input class="form-control" type="search" placeholder="search..">
+                            <input class="form-control" type="search" placeholder="search.." name="searchKey">
                             <button type=" button " class="btn  btn-default">
                                 <span class="glyphicon glyphicon-search"></span>
                             </button>
@@ -36,7 +36,7 @@
 
                         </div>
 
-                    </form>
+                    </g:form>
                 </li>
 
 

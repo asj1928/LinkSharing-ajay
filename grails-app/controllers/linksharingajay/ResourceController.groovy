@@ -33,6 +33,28 @@ class ResourceController {
         println ("=x=x=x=x=x=x=x=x=x=x=x=x= ${session.user.getUnreadResource(searchCO)}")
         render(ratingInfoVO.averagescore)
     }
+    def searchResource(){
+        println(params.searchKey)
+
+            Topic topic=Topic.findByName(params.searchKey)
+        println(topic.toString())
+        if (!topic){
+            flash.error = "Search not found"
+            redirect(controller : 'logIn' , action : 'index')
+        }else {
+            SearchCO co = new ResourceSearchCO()
+            co.topicId=topic.id
+            co.q = topic.visibility
+            if(co.q){
+                co.visibility=topic.visibility
+            }
+            println(co.topicId)
+            List<Resource> resources = Resource.search(co).list()
+            render(view: 'searchResource',model: [resourceList:resources])
+        }
+
+
+    }
 
 
 }
