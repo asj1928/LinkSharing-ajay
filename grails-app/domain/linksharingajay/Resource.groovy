@@ -101,6 +101,15 @@ abstract class Resource {
         println("about to return")
         return recentShares
     }
+    static String findTypeOfResource(Long id){
+        Resource resource = Resource.findById(id)
+        if(resource.class == LinkResource.class){
+            return "LinkResource"
+        }
+        else if(resource.class == DocumentResource.class){
+            return "DocumentResource"
+        }
+    }
 
 
 

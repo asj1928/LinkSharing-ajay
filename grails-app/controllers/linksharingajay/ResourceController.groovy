@@ -8,14 +8,12 @@ import vo.linksharingajay.RatingInfoVO
 class ResourceController {
 //    def id=2
 
-    def index() {
-        render "resource"
+    def index(Long id) {
+        Resource resource = Resource.findById(id)
+        String resourceType = Resource.findTypeOfResource(2)
+        render(view: 'showResources',model: [resource:resource,resourceType : resourceType])
     }
 
-    def delete(Integer id){
-        Resource resource=Resource.load(id)
-        render("${resource}")
-    }
     def handleObjectNotFoundException(ObjectNotFoundException e) {
 
         render ("no object found")
@@ -54,6 +52,40 @@ class ResourceController {
         }
 
 
+    }
+    def findTypeOfResource(){
+                Resource.findTypeOfResource(2)
+                render("sucess")
+            }
+    def delete(){
+        Long id = new Long(params.id)
+        println(id)
+        Resource resource = Resource.load(id)
+        def listOfReadingItems = ReadingItem.findAllByResource(resource)
+        def listOfResourceRating = ResourceRating.findAllByResource(resource)
+        println(resource)
+        if (session.user && (session.user.admin || session.user == resource.user)){
+
+            println(resource.delete(flush:true))//returns null
+
+
+            flash.message = "Resource deleted successfully"
+            redirect(controller: 'user',view: 'index')
+
+
+
+
+
+        }else{
+            flash.error = "Deletion of the Resource : ${resource} is not allowed"
+            redirect(controller: 'user',action: 'index')
+        }
+    }
+    def showResources(Long id){
+        Resource resource = Resource.findById(id)
+        RatingInfoVO ratingInfoVO = resource.method()
+
+        render("hello")
     }
 
 

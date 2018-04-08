@@ -78,7 +78,7 @@
                                             <span class="pull-right" style="margin-right: 0px;color: #007efc">
                                                 <a href="#" style="color: #007efc;font-size: 75%">Download</a>
                                                 <a href="#" style="color: #007efc;font-size: 75%"><ls:checkRead isRead="false"/></a>
-                                                <a href="#" style="color: #007efc;font-size: 75%">View Topic</a>
+                                                <a href="${createLink(controller: "resource" ,action: "index",id: resource.id)}" style="color: #007efc;font-size: 75%">View post</a>
                                             </span>
                                         </div>
                                     </div>
