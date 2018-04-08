@@ -30,8 +30,46 @@
 
         %{--top post--}%
         <div class="col-lg-12" style="margin-top: 25px">
+        <div class=" panel panel-default     ">
+            <div class="panel-heading  col-lg-12" style="background: #1b1e21">
 
-            <g:render template="topPost"/>
+
+                <h3 style="color:white " class="col-lg-8">Top Posts</h3>
+
+
+
+
+
+                <div class="col-lg-3 " >
+                    <select name="time" class=" form-control  " style=" margin-top: 15px">
+                        <option value="today">Today</option>
+                        <option value="1 week">1 Week</option>
+                        <option value="1 month">1 Month</option>
+                        <option value="1 year">1 Year</option>
+                    </select>
+                </div>
+
+
+
+
+
+
+
+            </div>
+            <div class="panel-body  ">
+                <ls:getTopPosts></ls:getTopPosts>
+
+
+
+
+
+
+
+
+            </div>
+        </div>
+
+
         </div>
 
     </div>

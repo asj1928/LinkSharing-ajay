@@ -10,3 +10,4 @@ class TopicVO {
     Integer count
     User createdBy
 }
+

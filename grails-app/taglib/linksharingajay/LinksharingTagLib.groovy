@@ -1,8 +1,10 @@
 package linksharingajay
 
+import vo.linksharingajay.TopPostVO
+
 class LinksharingTagLib {
 
-    static defaultEncodeAs = [taglib: 'html']
+    static defaultEncodeAs = "raw"
     //static encodeAsForTags = [tagName: [taglib:'html'], otherTagName: [taglib:'none']]
     static namespace = "ls"
     def checkRead = { attrs, body ->
@@ -19,5 +21,10 @@ class LinksharingTagLib {
         }
 
         out << body() << value
+    }
+    def getTopPosts = {
+        List topPostList = Resource.getTopPost()
+
+        out << g.render(template: '/login/topPost', collection: topPostList,var: 'tpList')
     }
 }

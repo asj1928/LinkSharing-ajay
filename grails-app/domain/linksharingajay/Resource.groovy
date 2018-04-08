@@ -3,6 +3,7 @@ package linksharingajay
 import co.linksharingajay.ResourceSearchCO
 import vo.linksharingajay.RatingInfoVO
 import vo.linksharingajay.ResourceVO
+import vo.linksharingajay.TopPostVO
 
 abstract class Resource {
     String description
@@ -69,29 +70,17 @@ abstract class Resource {
         return ratingInfoVO1
     }
 
-    static List<ResourceVO> getTopPost(){
-        List<ResourceVO> topPosts = ResourceRating.createCriteria().list{
-            createAlias('resource','r')
-            createAlias('r.topic','tr')
-            projections{
-                groupProperty('r.id')
-                property('r.user')
-                property('r.topic')
-                count('r.id', 'count')
-            }
-            eq('tr.visibility',Visibility.PUBLIC)
+    static List getTopPost() {
 
-            order('count', 'desc')
-            maxResults(5)
+        List query = ResourceRating.executeQuery("select ra.resource from Resource r inner join ResourceRating ra on r.id=ra.resource group by r.id order by sum(ra.score) desc",[offset:0,max:5])
+
+        List results =[]
+        query.each {
+            results.add(it)
         }
-        List result = []
-        topPosts.each{
-            result.add(new ResourceVO(id: it[0],createdBy: it[1],topic: it[2],count: it[3]))
-        }
-        println("Returning top posts : " + result)
-        return result
+        return results
+
     }
-
     static List<Resource> getRecentShares(){
 
         List<Resource> recentShares = Resource.createCriteria().list {
