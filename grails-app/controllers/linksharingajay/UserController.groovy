@@ -25,4 +25,8 @@ class UserController {
             }
         }
     }
+    def editProfile() {
+        Map map = userService.showProfile(new String(session.user.username))
+        render(view: 'editProfile', model: [user: map.userInformation, userTopics: map.userTopics, userPosts: map.userPosts])
+    }
 }

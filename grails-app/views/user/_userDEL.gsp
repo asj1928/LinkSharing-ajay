@@ -7,7 +7,7 @@
                 </div>
                 <div class="col-sm-9">
                     <g:set var="sub" value="${Subscription.findAllByUser(session.user)}"/>
-                    <g:set var="topic"value="${Topic.findAllByCreatedBy(session.user)}"/>
+                    <g:set var="topic" value="${Topic.findAllByCreatedBy(session.user)}"/>
                     <p>${session.user.firstName} ${session.user.lastName}<br>
                         <small class="text-muted">@${session.user.userName}</small>
                     </p>

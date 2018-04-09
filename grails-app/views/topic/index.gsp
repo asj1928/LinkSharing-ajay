@@ -143,6 +143,27 @@
                                     <p style="color: #9d9d9d">post</p>
                                     <p1 style="color: #2e6da4">${itr.resources.size()}</p1>
                                 </div>
+                                <g:if test="${session.user != null}">
+                                    <div class="col-lg-12"><br></div>
+
+                                    <div class="col-lg-12">
+                                        <div class="col-lg-10">
+                                            <select class="pull-right form-control ">
+                                                <option>Serious</option>
+                                                <option>Casual</option>
+                                                <option>Very Serious</option>
+                                            </select>
+                                        </div>
+
+                                        <div class="col-lg-2">
+                                            <span type="img" class="fa fa-envelope pull-right fa-2x"
+                                                  style="margin-left: 10px; margin-right: 5px;">
+
+                                            </span>
+                                        </div>
+
+                                    </div>
+                                </g:if>
 
                             </div>
 
@@ -227,6 +248,7 @@
 
                         <div class="col-lg-12">
                             <div class="col-lg-2"></div>
+
                             <div class="col-lg-10  ">
                                 <form class="form-inline col-lg-12   " style="margin-top: 12px">
                                     <div class="form-group">
@@ -247,7 +269,7 @@
 
                     <div class="panel-body  ">
 
-                        <g:set var="res" value="${Resource.findByTopic(itr)}"/>
+                        <g:set var="res" value="${Resource.findAllByTopic(itr)}"/>
                         <g:each in="${res}" var="rIt">
                             <div class="col-lg-12">
                                 <div class="col-lg-3" style="margin-top: 25px">
@@ -259,14 +281,14 @@
                                     <div class="col-sm-12">
                                         <br>
 
-                                        <span>${res.user.firstName} ${res.user.lastName}  &nbsp;&nbsp;&nbsp;&nbsp;<small
-                                                class="text-muted">@${res.user.userName}  </small>
+                                        <span>${rIt.user.firstName} ${rIt.user.lastName}  &nbsp;&nbsp;&nbsp;&nbsp;<small
+                                                class="text-muted">@${rIt.user.userName}</small>
 
-                                            <a href="#" class="pull-right">Grails</a>
+                                            <a href="#" class="pull-right">${rIt.topic.name}</a>
                                             <br><br>
 
                                             <div class="col-lg-12">
-                                                <p>${res.description}</p>
+                                                <p>${rIt.description}</p>
                                             </div>
 
                                         </span>
@@ -275,8 +297,9 @@
                                             <i class="fa fa-facebook-square fa-lg" aria-hidden="true"></i>
                                             <i class="fa fa-google-plus fa-lg" aria-hidden="true"></i>
                                             <i class="fa fa-twitter-square fa-lg" aria-hidden="true"></i>
-                                            <span class="pull-right" style="margin-right: 0px;color: #007efc"><a href="#"
-                                                                                                                 style="color: #007efc;font-size: 75%">Download</a>
+                                            <span class="pull-right" style="margin-right: 0px;color: #007efc"><a
+                                                    href="#"
+                                                    style="color: #007efc;font-size: 75%">Download</a>
                                                 <a href="#" style="color: #007efc;font-size: 75%">Mark as Read</a>
                                                 <a href="#" style="color: #007efc;font-size: 75%">View Topic</a></span>
                                         </div>
@@ -285,7 +308,6 @@
                                 </div>
                             </div>
                         </g:each>
-
 
                     </div>
                 </div>

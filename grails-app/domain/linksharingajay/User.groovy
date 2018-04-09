@@ -7,6 +7,8 @@ class User {
     String userName
     transient String name
     String password
+    String confirmpassword
+
     String firstName
     String lastName
     byte photo
@@ -27,7 +29,16 @@ class User {
     }
     static constraints = {
         email(unique: true ,nullable: false,blank: false, email: true)
-        password(size: 5..35,nullable: false,blank: false)
+        password(nullable: false, blank: false, size: 5..15, validator: { password, obj ->
+            println "runnig password validation > " + obj.confirmpassword
+            if (obj.confirmpassword) {
+                println "inside validation"
+                def password2 = obj.confirmpassword
+                return (password == password2) ? true : ['invalid.matchingpasswords']
+            }
+            else
+                return true
+        })
         firstName(nullable: false,blank: false)
         lastName(nullable: false,blank: false)
         userName(unique: true,nullable: false,blank: false)
