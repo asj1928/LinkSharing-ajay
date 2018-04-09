@@ -193,10 +193,16 @@ class BootStrap {
     }
 
     void createResourceRating(){
-        List<Resource> resource=Resource.getAll()
-        resource.each {
-            ResourceRating resourceRating=new ResourceRating(user: it.user,resource:it,score: 3)
-            resourceRating.save()
+        List<Resource> resources = Resource.findAll()
+        List<User> users = User.findAll()
+        users.each {
+            User user = it
+            user.readingItems.each {
+                Resource resource = it.resource
+                ResourceRating resourceRating = new ResourceRating(user: user,resource: resource,'score':3)
+                println(resourceRating.save())
+            }
+
         }
     }
 

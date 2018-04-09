@@ -20,8 +20,8 @@ abstract class Resource {
 
     static mapping = {
 //        topic fetch: 'join'
-        topic lazy: true
-        user lazy: true
+        topic lazy: false
+        user lazy: false
         readingItems lazy: true
         readingItems cascade: 'delete'
         resourceRating cascade: 'delete'
@@ -46,12 +46,12 @@ abstract class Resource {
         return votes
     }
 
-    def avgScore(Resource resource) {
+    def avgScore() {
         def average = ResourceRating.createCriteria().get {
             projections {
                 avg('score')
             }
-            eq("resource", resource)
+            eq("resource", this)
         }
 
         return average

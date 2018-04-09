@@ -21,7 +21,7 @@ class User {
 
     static mapping = {
         sort("id": "desc")
-        subscriptions lazy: false
+        subscriptions fetch: 'join'
         photo(sqlType: "longblob")
 
     }
@@ -71,6 +71,14 @@ class User {
             return this.topics.size()
         else
             return 0
+    }
+    Integer getScore(Resource resource){
+        ResourceRating resourceRating = ResourceRating.findByUserAndResource(this,resource)
+        if (resourceRating){
+            return resourceRating.score
+        }else {
+            return 1
+        }
     }
 
 

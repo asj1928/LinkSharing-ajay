@@ -6,6 +6,11 @@
 --%>
 
 <%@ page contentType="text/html;charset=UTF-8" %>
+<style>
+@import url(https://fonts.googleapis.com/css?family=Roboto:500,100,300,700,400);
+
+</style>
+
 <html>
 <head>
 
@@ -17,6 +22,7 @@
     %{--<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>--}%
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
+    <asset:link rel="stylesheet" href="star.css"/>
 </head>
 
 <body>
@@ -38,22 +44,71 @@
                                 <div class="col-sm-12">
                                     <br>
 
-                                    <div class="col-lg-5">
+                                    <div class="col-lg-4">
                                         <span>${resource.user.firstName} <small
                                                 class="text-muted">@${resource.user.userName}  ${resource.dateCreated}</small>
                                         </span>
 
                                     </div>
 
-                                    <div class="col-lg-7" style="text-align: right">
+                                    <div class="col-lg-8" style="text-align: right">
                                         <p><a href="#" class="pull-right">${resource.topic.name}</a></p><br>
 
                                         <p>2:45PM, 22FEB 2014</p>
-                                        <i class="fa fa-heart" style="font-size:20px;"></i>
-                                        <i class="fa fa-heart" style="font-size:20px;"></i>
-                                        <i class="fa fa-heart" style="font-size:20px;"></i>
-                                        <i class="fa fa-heart-o" style="font-size:20px;"></i>
-                                        <i class="fa fa-heart-o" style="font-size:20px;"></i>
+                                        %{--<g:if test="${!session.user || session.user.getScore(resource) == 1}">--}%
+
+                                            %{--<g:form  class="stars" controller="resource" action="storeRating"--}%
+                                                    %{--method="post">--}%
+
+                                                %{--<input class="star star-5" id="star-5" type="radio" name="star"--}%
+                                                       %{--value="5"/>--}%
+                                                %{--<label class="star star-5" for="star-5"></label>--}%
+                                                %{--<input class="star star-4" id="star-4" type="radio" name="star"--}%
+                                                       %{--value="4"/>--}%
+                                                %{--<label class="star star-4" for="star-4"></label>--}%
+                                                %{--<input class="star star-3" id="star-3" type="radio" name="star"--}%
+                                                       %{--value="3"/>--}%
+                                                %{--<label class="star star-3" for="star-3"></label>--}%
+                                                %{--<input class="star star-2" id="star-2" type="radio" name="star"--}%
+                                                       %{--value="2"/>--}%
+                                                %{--<label class="star star-2" for="star-2"></label>--}%
+                                                %{--<input class="star star-1" id="star-1" type="radio" name="star"--}%
+                                                       %{--value="1"/>--}%
+                                                %{--<label class="star star-1" for="star-1"></label>--}%
+                                                %{--<g:hiddenField name="id" value="${resource.id}"/>--}%
+                                                %{--<input type="submit" value="Rate" class="btn-default form-control"--}%
+                                                       %{--style="background-color: yellow">--}%
+                                            %{--</g:form>--}%
+
+                                        %{--</g:if>--}%
+                                        %{--<g:else>--}%
+                                            <g:set var="score" value="${session.user.getScore(resource)}"/>
+                                            <g:form
+                                                    class="stars" controller="resource" action="storeRating"
+                                                    method="post">
+
+                                                <input class="star star-5" id="star-5" type="radio" name="star"
+                                                       value="5" <g:if test="${score == 5}">checked</g:if>/>
+                                                <label class="star star-5" for="star-5"></label>
+                                                <input class="star star-4" id="star-4" type="radio" name="star"
+                                                       value="4" <g:if test="${score == 4}">checked</g:if>/>
+                                                <label class="star star-4" for="star-4"></label>
+                                                <input class="star star-3" id="star-3" type="radio" name="star"
+                                                       value="3" <g:if test="${score == 3}">checked</g:if>/>
+                                                <label class="star star-3" for="star-3"></label>
+                                                <input class="star star-2" id="star-2" type="radio" name="star"
+                                                       value="2" <g:if test="${score == 2}">checked</g:if>/>
+                                                <label class="star star-2" for="star-2"></label>
+                                                <input class="star star-1" id="star-1" type="radio" name="star"
+                                                       value="1" <g:if test="${score == 1}">checked</g:if>/>
+                                                <label class="star star-1" for="star-1"></label>
+                                                <g:hiddenField name="id" value="${resource.id}"/>
+                                                <input type="submit" value="Rate" class="btn-default form-control"
+                                                       style="background-color: yellow">
+
+                                            </g:form>
+
+                                        %{--</g:else>--}%
 
                                     </div>
 
@@ -79,24 +134,24 @@
                                 <i class="fa fa-google-plus fa-lg" aria-hidden="true"></i>
                                 <i class="fa fa-twitter-square fa-lg" aria-hidden="true"></i>
                                 <span class="pull-right" style="margin-right: 0px;color: #007efc">
-                                    <g:if test="${session.user!=null}">
-                                    <a href="${createLink(controller: 'resource', action: 'delete', id: resource.id)}"
-                                       class="text-primary" style="text-decoration: underline;">Delete</a>
-                                    <a href="#" style="color: #007efc;font-size: 90%">Edit</a>
-                                    <a href="#" class="text-primary" style="text-decoration: underline;">
-                                        <ls:checkRead resource="${resource}"></ls:checkRead></a>
-                                    <g:if test="${resourceType == "LinkResource"}">
+                                    <g:if test="${session.user != null}">
+                                        <a href="${createLink(controller: 'resource', action: 'delete', id: resource.id)}"
+                                           class="text-primary" style="text-decoration: underline;">Delete</a>
+                                        <a href="#" style="color: #007efc;font-size: 90%">Edit</a>
+                                        <a href="#" class="text-primary" style="text-decoration: underline;">
+                                            <ls:checkRead resource="${resource}"></ls:checkRead></a>
+                                        <g:if test="${resourceType == "LinkResource"}">
 
-                                        <a href="#" class="text-primary"
-                                           style="text-decoration: underline;">Download</a>
+                                            <a href="#" class="text-primary"
+                                               style="text-decoration: underline;">Download</a>
 
-                                    </g:if>
-                                    <g:if test="${resourceType.equals("DocumentResource")}">
+                                        </g:if>
+                                        <g:if test="${resourceType.equals("DocumentResource")}">
 
-                                        <a href="#" class="text-primary"
-                                           style="text-decoration: underline;">View Full Site</a>
+                                            <a href="#" class="text-primary"
+                                               style="text-decoration: underline;">View Full Site</a>
 
-                                    </g:if>
+                                        </g:if>
                                     </g:if>
                                 </span>
                             </div>

@@ -6,6 +6,7 @@ import org.hibernate.ObjectNotFoundException
 import vo.linksharingajay.RatingInfoVO
 
 class ResourceController {
+    ResourceService resourceService
 //    def id=2
 
     def index(Long id) {
@@ -52,7 +53,7 @@ class ResourceController {
         println(topic.toString())
         if (!topic){
             flash.error = "Search not found"
-            redirect(controller : 'logIn' , action : 'index')
+            redirect(controller : 'login' , action : 'index')
         }else {
             SearchCO co = new ResourceSearchCO()
             co.topicId=topic.id
@@ -96,13 +97,18 @@ class ResourceController {
         }
     }
     def showResources(Long id){
-        Resource resource = Resource.findById(id)
-        RatingInfoVO ratingInfoVO = resource.method()
 
-        render("hello")
     }
-    def viewPost(){
 
+    def storeRating() {
+        Map map = [score: params.star,ratedBy: session.user, resourceId: params.id]
+        println(map)
+        if (resourceService.saveRating(map)) {
+            flash.message = "Saved Succesfully"
+        } else {
+            flash.eror = "Rating Not Saved"
+        }
+        redirect(controller: 'user', view: 'index')
     }
 
 
