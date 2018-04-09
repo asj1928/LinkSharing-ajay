@@ -66,9 +66,9 @@ class Topic {
             return 0
     }
 
-    static Boolean isPublic(Long id){
-        Topic topic = Topic.findById(id)
-        if(topic.visibility == Visibility.PUBLIC){
+    Boolean isPublic(){
+        println(this.visibility)
+        if(this.visibility == Visibility.PUBLIC){
             return true
         }
         else {

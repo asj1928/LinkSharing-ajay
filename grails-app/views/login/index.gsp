@@ -66,7 +66,7 @@
                         <div class="col-lg-12"></div>
 
                         <div class="form-group col-lg-10">
-                            <input type="submit" class="form-control btn-primary">
+                            <input type="submit" class="form-control btn-default" style="background-color: #5e5e5e;color: white">
                         </div>
 
                     </g:form>
@@ -137,7 +137,7 @@
                         </div>
 
                         <div class="form-group col-lg-10">
-                            <input type="submit" class="form-control btn-primary">
+                            <input type="submit" class="form-control btn-default" style="background-color: #5e5e5e;color: white">
                         </div>
 
                     </form>

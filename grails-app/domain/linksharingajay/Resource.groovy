@@ -17,6 +17,16 @@ abstract class Resource {
     static constraints = {
         description(type: 'text')
     }
+
+    static mapping = {
+//        topic fetch: 'join'
+        topic lazy: true
+        user lazy: true
+        readingItems lazy: true
+        readingItems cascade: 'delete'
+        resourceRating cascade: 'delete'
+    }
+
     static namedQueries = {
 
         search{ ResourceSearchCO co ->
@@ -94,11 +104,14 @@ abstract class Resource {
     static List<Resource> getRecentShares(){
 
         List<Resource> recentShares = Resource.createCriteria().list {
+//            eq('',Visibility.PUBLIC)
             order("dateCreated", "desc")
             maxResults(2)
 
+
         }
         println("about to return")
+        println(recentShares)
         return recentShares
     }
     static String findTypeOfResource(Long id){

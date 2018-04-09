@@ -9,9 +9,23 @@ class ResourceController {
 //    def id=2
 
     def index(Long id) {
+        println(id)
         Resource resource = Resource.findById(id)
-        String resourceType = Resource.findTypeOfResource(2)
-        render(view: 'showResources',model: [resource:resource,resourceType : resourceType])
+        println(resource)
+        println(session.user)
+        if(session.user && resource.canViewBy(session.user)){
+            String resourceType = Resource.findTypeOfResource(id)
+            render(view: 'showResources',model: [resource:resource,resourceType : resourceType])
+        }
+        else if(resource.topic.isPublic()){
+            println(resource)
+            String resourceType = Resource.findTypeOfResource(id)
+            render(view: 'showResources',model: [resource:resource,resourceType : resourceType])
+        }
+        else {
+            flash.error = "User cannot view this resource"
+            redirect(controller: 'login',view: 'index')
+        }
     }
 
     def handleObjectNotFoundException(ObjectNotFoundException e) {
@@ -86,6 +100,9 @@ class ResourceController {
         RatingInfoVO ratingInfoVO = resource.method()
 
         render("hello")
+    }
+    def viewPost(){
+
     }
 
 

@@ -24,7 +24,7 @@
                     <i class="fa fa-google-plus fa-lg" aria-hidden="true"></i>
                     <i class="fa fa-twitter-square fa-lg" aria-hidden="true"></i>
                 <span class="pull-right" style="margin-right: 0px;color: #007efc">
-                    <a href="#" style="color: #007efc;font-size: small"> View Post</a></span>
+                    <a href="${createLink(controller: "resource" ,action: "index",id: itr.id)}" style="color: #007efc;font-size: 75%"> View Post</a></span>
 
                 </div>
             </div>

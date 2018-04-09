@@ -14,7 +14,7 @@
     <meta name="layout" content="Application">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    %{--<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>--}%
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
 </head>
@@ -79,11 +79,12 @@
                                 <i class="fa fa-google-plus fa-lg" aria-hidden="true"></i>
                                 <i class="fa fa-twitter-square fa-lg" aria-hidden="true"></i>
                                 <span class="pull-right" style="margin-right: 0px;color: #007efc">
+                                    <g:if test="${session.user!=null}">
                                     <a href="${createLink(controller: 'resource', action: 'delete', id: resource.id)}"
                                        class="text-primary" style="text-decoration: underline;">Delete</a>
                                     <a href="#" style="color: #007efc;font-size: 90%">Edit</a>
-                                    <a href="#" class="text-primary" style="text-decoration: underline;"><ls:checkRead
-                                            resource="${resource}"></ls:checkRead></a>
+                                    <a href="#" class="text-primary" style="text-decoration: underline;">
+                                        <ls:checkRead resource="${resource}"></ls:checkRead></a>
                                     <g:if test="${resourceType == "LinkResource"}">
 
                                         <a href="#" class="text-primary"
@@ -95,6 +96,7 @@
                                         <a href="#" class="text-primary"
                                            style="text-decoration: underline;">View Full Site</a>
 
+                                    </g:if>
                                     </g:if>
                                 </span>
                             </div>
