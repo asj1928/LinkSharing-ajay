@@ -13,7 +13,7 @@ class UserService {
     }
     def showProfile(String username) {
         User user = User.findByUserName(username)
-        UserVO userInformation = new UserVO(name: user.getName(), username: user.username,
+        UserVO userInformation = new UserVO(name: user.getName(), username: user.userName,
                 subscriptionCount: user.subscriptions.size(), resourceCount: user.resources.size(),
                 topicCount: user.topics.size())
 
@@ -21,7 +21,7 @@ class UserService {
         List<Topic1VO> userTopics = []
         topicList.each {
             userTopics.add(new Topic1VO(topicId: it.id, topicName: it.name, topicVisibility: it.visibility,
-                    ownerName: it.createdBy.getName(), ownerUsername: it.createdBy.username,
+                    ownerName: it.createdBy.getName(), ownerUsername: it.createdBy.userName,
                     subscriptionCount: it.subscriptions.size(), resourcesCount: it.resources.size()))
         }
 

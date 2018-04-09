@@ -1,12 +1,24 @@
 package linksharingajay
 
 import co.linksharingajay.SearchCO
+import vo.linksharingajay.InboxVO
 
 class UserController {
+    UserService userService
+
 
     def index() {
         /*render(session.user.userName)*/
         /* session.user.getUnreadResource()*/
+        if (session.user) {
+            List<InboxVO> unReadResourcesList = session.user.getUnReadResources()
+            println(unReadResourcesList)
+            render(view: 'index', model: [unReadResourcesList: unReadResourcesList])
+        }else {
+            redirect(controller: 'login', action: 'index')
+
+        }
+
     }
 
     def show(Integer id){
@@ -26,7 +38,7 @@ class UserController {
         }
     }
     def editProfile() {
-        Map map = userService.showProfile(new String(session.user.username))
+        Map map = userService.showProfile(new String(session.user.userName))
         render(view: 'editProfile', model: [user: map.userInformation, userTopics: map.userTopics, userPosts: map.userPosts])
     }
 }

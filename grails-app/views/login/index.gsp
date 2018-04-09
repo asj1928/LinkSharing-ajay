@@ -84,66 +84,7 @@
         </div>
 
         <div class="col-lg-12" style="margin-top: 25px;">
-            <div class=" panel panel-default ">
-                <div class="panel-heading  " style="background:#1b1e21">
-                    <p>
-
-                    <h3 style="color:white">Registration</h3></p>
-                </div>
-
-                <div class="panel-body ">
-                    <form>
-                        <div class="form-group col-lg-10">
-                            <label for="fname">First Name</label>
-                            <input class="form-control" type="text" id="fname" placeholder="enter your first name">
-                        </div>
-
-                        <div class="col-lg-2"></div>
-
-                        <div class="form-group col-lg-10">
-                            <label for="lname">Last name</label>
-                            <input class="form-control" type="text" id="lname" placeholder="enter your last name">
-
-                        </div>
-
-                        <div class="form-group col-lg-10">
-                            <label for="em1">Email</label>
-                            <input class="form-control" type="email" id="em1" placeholder="enter your last name">
-
-                        </div>
-
-                        <div class="form-group col-lg-10">
-                            <label for="uname">Username</label>
-                            <input class="form-control" type="text" id="uname">
-
-                        </div>
-
-                        <div class="form-group col-lg-10">
-                            <label for="psw1">Password</label>
-                            <input class="form-control" type="password" id="psw1" placeholder="enter password">
-
-                        </div>
-
-                        <div class="form-group col-lg-10">
-                            <label for="cpsw1">Confirm Password</label>
-                            <input class="form-control" type="password" id="cpsw1" placeholder="confirm your  password">
-
-                        </div>
-
-                        <div class="form-group col-lg-10">
-                            <label for="ph">Photo</label>
-                            <input class="form-control" type="file" id="ph">
-
-                        </div>
-
-                        <div class="form-group col-lg-10">
-                            <input type="submit" class="form-control btn-default" style="background-color: #5e5e5e;color: white">
-                        </div>
-
-                    </form>
-
-                </div>
-            </div>
+            <g:render template="register"/>
 
         </div>
     </div>

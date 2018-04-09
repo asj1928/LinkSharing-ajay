@@ -4,6 +4,7 @@ import co.linksharingajay.ResourceSearchCO
 import org.hibernate.ObjectNotFoundException
 
 class TopicController {
+    TopicService topicService
 
     def index() { }
 
@@ -44,5 +45,13 @@ class TopicController {
     def handleObjectNotFoundException(ObjectNotFoundException e) {
 
         render ("no object found")
+    }
+    def changeName(){
+        if(topicService.editTopicName(params)){
+            flash.message = "Topic Name Changed Successfully"
+        }else{
+            flash.error= "Error Changing Topic Name"
+        }
+        redirect(controller: 'user',action: 'index')
     }
 }

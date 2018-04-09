@@ -22,7 +22,8 @@ class BootStrap {
 
 
         if(User.count()==0) {
-            User admin = new User(email: "ajay@gmail.com", password:"lololol", firstName: "ajay", lastName: "singh", userName: 'ajay.s.jodha', admin: true, active: true)
+            User admin = new User(email: "asjodha22@gmail.com", password: "please",confirmpassword:"please", firstName: "ajay", lastName: "jodha", userName: 'asjodha', admin: false, active: true)
+
             if(admin.save()){
                 log.info("Admin Saved Successfully")
             }
@@ -30,7 +31,7 @@ class BootStrap {
                 log.error("error: ${admin.errors.getAllErrors()}")
             }
 
-            User normal = new User(email: "asjodha22@gmail.com", password: "please", firstName: "ajay", lastName: "jodha", userName: 'asjodha', admin: false, active: true)
+            User normal = new User(email: "ajay@gmail.com", password:"lololol" ,confirmpassword:"lololol" , firstName: "ajay", lastName: "singh", userName: 'ajay.s.jodha', admin: true, active: true)
             if(normal.save()){
                 log.info("Normal User Saved Successfully")
             }
@@ -169,8 +170,19 @@ class BootStrap {
 
     void createReadingItems(){
         List<Resource> resource=Resource.getAll()
+        def i=0
+
         resource.each {
-            ReadingItem readingItem=new ReadingItem(user: it.user,resource:it,isRead:true)
+            ReadingItem readingItem
+
+            if(i%2==0)
+            { readingItem=new ReadingItem(user: it.user,resource:it,isRead:true)
+
+            }
+            else{
+                 readingItem=new ReadingItem(user: it.user,resource:it,isRead:false)
+            }
+            i++
             readingItem.save()
         }
 //

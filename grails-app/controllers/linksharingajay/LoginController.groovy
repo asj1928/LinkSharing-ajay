@@ -1,6 +1,7 @@
 package linksharingajay
 
 class LoginController {
+    LoginService loginService
 
     //    String a="ajay.s.jodha"
     //    String b="lololol"
@@ -37,24 +38,16 @@ class LoginController {
         session.invalidate()
         redirect(view:'index')
     }
-    def register(){
-        User admin = new User(email: "ajay@gmail.com", password:"bogasspass", firstName: "ajay", lastName: "singh", userName: 'asj', photo: 121, admin: true, active: true)
-        if(admin.save()){
-            flash.message="Admin Saved Successfully"
+    def register() {
+        println("printing params : $params")
+        User user = loginService.registerUser(params)
+        if (user) {
+            flash.message = "SUCCESSFULLY REGISTERED"
+            session.user = user
+            forward(controller: 'User', action: 'index')
+        } else {
+            flash.error = "UNABLE TO REGISTER USER"
         }
-        else {
-            flash.error="error"
-        }
-
-        User normal = new User(email: "lal@gmail.com", password: "hokaspokas", firstName: "lal", lastName: "Jhala", userName: 'jhala_lal', photo: 122, admin: false, active: true)
-        if(normal.save()){
-            flash.message="Normal User Saved Successfully"
-        }
-        else {
-            flash.error="error"
-        }
-
-        redirect(action: "index")
     }
     def validateForgotPassword(){
         println(params.email1)

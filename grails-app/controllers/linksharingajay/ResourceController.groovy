@@ -51,6 +51,7 @@ class ResourceController {
 
             Topic topic=Topic.findByName(params.searchKey)
         println(topic.toString())
+        if(topic.resources){
         if (!topic){
             flash.error = "Search not found"
             redirect(controller : 'login' , action : 'index')
@@ -64,6 +65,10 @@ class ResourceController {
             println(co.topicId)
             List<Resource> resources = Resource.search(co).list()
             render(view: 'searchResource',model: [resourceList:resources])
+        }}else {
+            flash.message= "no resource is there "
+            redirect(controller: 'user' ,view:'index' )
+
         }
 
 

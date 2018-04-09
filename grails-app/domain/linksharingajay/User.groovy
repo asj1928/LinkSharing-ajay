@@ -1,6 +1,7 @@
 package linksharingajay
 
 import co.linksharingajay.SearchCO
+import vo.linksharingajay.InboxVO
 
 class User {
     String email
@@ -90,6 +91,23 @@ class User {
         }else {
             return 1
         }
+    }
+    List<InboxVO> getUnReadResources() {
+
+        List<ReadingItem> unReadItems = ReadingItem.createCriteria().list(max: 10, offset: 0) {
+            eq('isRead', false)
+            eq('user', this)
+        }
+        List<InboxVO> unReadItemsList = []
+        println(unReadItems)
+        unReadItems.each{
+            unReadItemsList.add(new InboxVO(ownerName: it.resource.user.getName(),
+                    ownerUsername: it.resource.user.userName,topicName: it.resource.topic.name,
+                    topicId: it.resource.topic.id,resourceDescription: it.resource.description,
+                    resourceId: it.resource.id, readingItemId: it.id))
+        }
+        println(unReadItemsList)
+        return unReadItemsList
     }
 
 

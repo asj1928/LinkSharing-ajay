@@ -5,7 +5,9 @@ class LoginCheckInterceptor {
 
 
     LoginCheckInterceptor(){
-//        matchAll().excludes(controller: 'login')
+        matchAll().excludes(controller: 'login')
+                .excludes(controller:'topic' ,action:'index')
+
 
     }
 

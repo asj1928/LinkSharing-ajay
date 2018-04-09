@@ -26,7 +26,7 @@
 
                                     <div class="col-sm-3">
                                         <h6 class="text-muted pull-left">Subscriptions</h6>
-                                        <h6 class="text-primary">${itr.subscriptions.size()}</h6>
+                                        <h6 class="text-primary">${itr.subscriptions?.size()}</h6>
                                     </div>
 
                                     <div class="col-sm-3">
@@ -34,7 +34,7 @@
                                             <br>
                                             <br>
 
-                                            <p class="text-primary">${itr.resources.size()}</p>
+                                            <p class="text-primary">${itr.resources?.size()}</p>
                                         </h6>
                                     </div>
                                     <span type="img" class="fa fa-file pull-right fa-2x"

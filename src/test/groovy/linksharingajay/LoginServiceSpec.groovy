@@ -1,9 +1,9 @@
 package linksharingajay
 
-import grails.testing.web.taglib.TagLibUnitTest
+import grails.testing.services.ServiceUnitTest
 import spock.lang.Specification
 
-class DemoTagLibSpec extends Specification implements TagLibUnitTest<DemoTagLib> {
+class LoginServiceSpec extends Specification implements ServiceUnitTest<LoginService>{
 
     def setup() {
     }

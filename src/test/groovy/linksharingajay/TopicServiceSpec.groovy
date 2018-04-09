@@ -1,9 +1,9 @@
 package linksharingajay
 
-import grails.testing.web.controllers.ControllerUnitTest
+import grails.testing.services.ServiceUnitTest
 import spock.lang.Specification
 
-class ResourceRatingControllerSpec extends Specification implements ControllerUnitTest<ResourceRatingController> {
+class TopicServiceSpec extends Specification implements ServiceUnitTest<TopicService>{
 
     def setup() {
     }
