@@ -1,4 +1,5 @@
-    <div class="modal-dialog">
+<%@ page import="linksharingajay.Topic" %>
+<div class="modal-dialog">
 
 
         <div class="modal-content">
@@ -7,7 +8,7 @@
                 <h4 class="modal-title">Share document</h4>
             </div>
             <div class="modal-body">
-                <form class="form-horizontal" action="#">
+                <g:uploadForm controller="documentResource" action="save" method="post" enctype="multipart/form-data" class="form-horizontal">
 
                     <div class=" col-lg-12">
                         <div class="col-lg-2">
@@ -27,7 +28,7 @@
                             <label class="control-label " for="descrip">description : </label>
                         </div>
                         <div class="col-lg-12">
-                            <textarea class="form-control" rows="5" id="descrip"></textarea>
+                            <textarea class="form-control" rows="5" id="descrip" name="description"></textarea>
                         </div>
                     </div>
                     <div class="dropdown col-lg-12" >
@@ -37,9 +38,12 @@
 
                         </div>
                         <div class="col-lg-10">
-                            <select class="form-control ">
-                                <option value="volvo">topic1</option>
-                                <option value="saab">topic2</option>
+                            <select class="form-control " name="topic">
+                                <g:set var="list" value="${Topic.findAllByCreatedBy(session.user)}"/>
+                                <g:each in="${list}" var="it">
+
+                                    <option value="${it.name}">${it.name}</option>
+                                </g:each>
                             </select>
                         </div>
 
@@ -57,7 +61,7 @@
                         </div>
                         <div class="col-sm-4"></div>
                     </div>
-                </form>
+                </g:uploadForm>
             </div>
 
 

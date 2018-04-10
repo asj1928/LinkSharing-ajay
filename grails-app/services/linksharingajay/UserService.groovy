@@ -72,7 +72,7 @@ class UserService {
         if (userList) {
             List<UserVO> allUsers = []
             userList.each {
-                allUsers.add(new UserVO(name: it.getName(), username: it.username,
+                allUsers.add(new UserVO(name: it.getName(), username: it.userName,
                         subscriptionCount: it.subscriptions.size(), resourceCount: it.resources.size(),
                         topicCount: it.topics.size(), active: it.active, userId: it.id))
             }

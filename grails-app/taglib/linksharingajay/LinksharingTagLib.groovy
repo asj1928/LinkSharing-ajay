@@ -2,7 +2,7 @@ package linksharingajay
 
 class LinksharingTagLib {
 
-    static defaultEncodeAs = [taglib: 'html']
+    static defaultEncodeAs = "raw"
     //static encodeAsForTags = [tagName: [taglib:'html'], otherTagName: [taglib:'none']]
     static namespace = "ls"
     def checkRead = { attrs, body ->
@@ -21,9 +21,11 @@ class LinksharingTagLib {
         out << body() << value
     }
 
+
+
+
     def userImage = { attrs, body ->
         out << "<img src='${createLink(controller: 'user', action: 'fetchUserImage', params: [username: attrs.username])}' " +
                 " height='${attrs.height}' width='${attrs.width}'>"
     }
-
 }

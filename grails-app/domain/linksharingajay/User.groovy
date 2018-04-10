@@ -28,6 +28,10 @@ class User {
         photo(sqlType: "longblob")
 
     }
+
+    def getName(){
+         this.name=this.firstName+this.lastName
+    }
     static constraints = {
         email(unique: true ,nullable: false,blank: false, email: true)
         password(nullable: false, blank: false, size: 5..15, validator: { password, obj ->

@@ -16,89 +16,100 @@
     <div class="container-fluid">
         <div class="col-lg-4">
             <div class="navbar-header">
-                <g:if test="${session.user!=null}">
-                <a class="navbar-brand" href="${createLink(controller: 'user',view:'index')}">LinkSharing</a>
+                <g:if test="${session.user != null}">
+                    <a class="navbar-brand" href="${createLink(controller: 'user', view: 'index')}">LinkSharing</a>
                 </g:if>
-                <g:else><a class="navbar-brand" href="${createLink(controller: 'login',view:'index')}">LinkSharing</a></g:else>
+                <g:else><a class="navbar-brand"
+                           href="${createLink(controller: 'login', view: 'index')}">LinkSharing</a></g:else>
             </div>
         </div>
+
         <div class="col-lg-8">
 
+            <g:if test="${session.user != null}">
+                <ul class="nav navbar-nav col-lg-12">
+                    <!--<li class="col-lg-1"></li>-->
+                    <li class="col-lg-5 ">
+                        <g:form controller="resource" action="searchResource" class="form-inline col-lg-12 "
+                                style="margin-top: 12px">
+                            <div class="form-group">
+                                <input class="form-control" type="search" placeholder="search.." name="searchKey">
+                                <button type=" button " class="btn  btn-default">
+                                    <span class="glyphicon glyphicon-search"></span>
+                                </button>
+                            </input>
 
-            <g:if test="${session.user!=null}">
-            <ul class="nav navbar-nav col-lg-12">
-                <!--<li class="col-lg-1"></li>-->
-                <li class="col-lg-5 ">
-                    <g:form controller="resource" action="searchResource" class="form-inline col-lg-12 " style="margin-top: 12px">
-                        <div class="form-group">
-                            <input class="form-control" type="search" placeholder="search.." name="searchKey">
-                            <button type=" button " class="btn  btn-default">
-                                <span class="glyphicon glyphicon-search"></span>
-                            </button>
-                        </input>
+                            </div>
 
-                        </div>
-
-                    </g:form>
-                </li>
-
-
-                <li class="col-lg-1 " style="padding: 0px"><a href="#myModal" data-toggle="modal"
-                                                              data-target="#myModal"><i class="fa fa-comment-o"
-                                                                                        style="font-size:24px"></i></a></li>
-                <div id="myModal" class="modal fade" role="dialog">
-                    <g:render template="/topic/create"/>
-                </div>
+                        </g:form>
+                    </li>
 
 
-                <li class="col-lg-1" style="padding: 0px"><a href="#myModal2" data-toggle="modal"
-                                                             data-target="#myModal2"><i class="fa fa-envelope-o"
-                                                                                        style="font-size:24px"></i></a>
-                </li>
-                <div id="myModal2" class="modal fade" role="dialog">
+                    <li class="col-lg-1 " style="padding: 0px"><a href="#myModal" data-toggle="modal"
+                                                                  data-target="#myModal"><i class="fa fa-comment-o"
+                                                                                            style="font-size:24px"></i>
+                    </a></li>
 
-                    <g:render template="/topic/email"/>
-                </div>
-
-
-                <li class="col-lg-1" style="padding: 0px"><a href="#myModal3" data-toggle="modal"
-                                                             data-target="#myModal3"><i class="fa fa-link"
-                                                                                        style="font-size:24px"></i></a>
-                </li>
-                <div id="myModal3" class="modal fade" role="dialog">
-
-                    <g:render template="/linkResource/create"/>
-                </div>
+                    <div id="myModal" class="modal fade" role="dialog">
+                        <g:render template="/topic/create"/>
+                    </div>
 
 
-                <li class="col-lg-1" style="padding: 0px"><a href="#myModal4" data-toggle="modal"
-                                                             data-target="#myModal4"><i class="fa fa-file"
-                                                                                        style="font-size:24px"></i></a>
-                </li>
-                <div id="myModal4" class="modal fade" role="dialog">
+                    <li class="col-lg-1" style="padding: 0px"><a href="#myModal2" data-toggle="modal"
+                                                                 data-target="#myModal2"><i class="fa fa-envelope-o"
+                                                                                            style="font-size:24px"></i>
+                    </a>
+                    </li>
 
-                    <g:render template="/documentResource/create"/>
+                    <div id="myModal2" class="modal fade" role="dialog">
 
-                </div>
+                        <g:render template="/topic/email"/>
+                    </div>
 
 
-                <li class="dropdown  col-lg-3" style="padding: 0px">
-                    <a class="dropdown-toggle" data-toggle="dropdown" href="#"><i class="fa fa-user-circle-o"
-                                                                                  style="font-size:24px"></i>
-                        ${session.user.userName}
-                        <span class="caret"></span></a>
-                    <ul class="dropdown-menu">
-                        <li><g:link controller="user" action="editProfile">Profile</g:link></li>
-                        <li><a href="#">users</a></li>
-                        <li><a href="#">Topic</a></li>
-                        <li><a href="#">post</a></li>
-                        <li><g:link controller="login" action="logout">logout</g:link></li>
-                    </ul>
-                </li>
+                    <li class="col-lg-1" style="padding: 0px"><a href="#myModal3" data-toggle="modal"
+                                                                 data-target="#myModal3"><i class="fa fa-link"
+                                                                                            style="font-size:24px"></i>
+                    </a>
+                    </li>
 
-            </ul>
+                    <div id="myModal3" class="modal fade" role="dialog">
+
+                        <g:render template="/linkResource/create"/>
+                    </div>
+
+
+                    <li class="col-lg-1" style="padding: 0px"><a href="#myModal4" data-toggle="modal"
+                                                                 data-target="#myModal4"><i class="fa fa-file"
+                                                                                            style="font-size:24px"></i>
+                    </a>
+                    </li>
+
+                    <div id="myModal4" class="modal fade" role="dialog">
+
+                        <g:render template="/documentResource/create"/>
+
+                    </div>
+
+
+                    <li class="dropdown  col-lg-3" style="padding: 0px">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#"><i class="fa fa-user-circle-o"
+                                                                                      style="font-size:24px"></i>
+                            ${session.user.userName}
+                            <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><g:link controller="user" action="editProfile">Profile</g:link></li>
+                            <g:if test="${session.user.admin}">
+                                <li><g:link controller="user" action="showUserListToAdmin">Users</g:link></li>
+                            </g:if>
+                            <li><a href="#">Topic</a></li>
+                            <li><a href="#">post</a></li>
+                            <li><g:link controller="login" action="logout">logout</g:link></li>
+                        </ul>
+                    </li>
+
+                </ul>
             </g:if>
-
 
         </div>
 
@@ -118,7 +129,6 @@
         Copyright © 2017-2018 TO THE NEW. All rights reserved.
     </address>
 </div>
-
 
 </body>
 </html>
