@@ -96,12 +96,12 @@ class User {
 
         List<ReadingItem> unReadItems = ReadingItem.createCriteria().list(max: 10, offset: 0) {
             eq('isRead', false)
-            eq('user', this)
+//            eq('user', this)
         }
         List<InboxVO> unReadItemsList = []
         println(unReadItems)
         unReadItems.each{
-            unReadItemsList.add(new InboxVO(ownerName: it.resource.user.getName(),
+            unReadItemsList.add(new InboxVO(ownerName: it.resource.user.firstName+" "+it.resource.user.lastName,
                     ownerUsername: it.resource.user.userName,topicName: it.resource.topic.name,
                     topicId: it.resource.topic.id,resourceDescription: it.resource.description,
                     resourceId: it.resource.id, readingItemId: it.id))

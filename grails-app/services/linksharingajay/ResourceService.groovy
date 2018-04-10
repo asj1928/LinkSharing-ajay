@@ -12,10 +12,15 @@ class ResourceService {
     def saveRating(Map resourceData) {
         println("===========")
         Resource resource = Resource.findById(resourceData.resourceId)
-        println(resource)
-        println("===========1")
 
-        ResourceRating resourceRating = ResourceRating.findByUserAndResource(resourceData.ratedBy, resource)
+        User user=User.findById(resourceData.ratedBy)
+        println(resource)
+        println(user)
+        println("===========1")
+        println(resourceData)
+
+        ResourceRating resourceRating = ResourceRating.findByUserAndResource(user, resource)
+        println(resourceRating)
 //            println(resourceRating.getScore())
         println("===========2")
         if (resourceRating) {
@@ -39,13 +44,16 @@ class ResourceService {
             }
         } else {
             println("===========7")
-            resourceRating = new ResourceRating(user: resourceData.ratedBy, resource: resource, score: resourceData.score)
-            if (resourceRating.save(flush: true)) {
-                log.info("Score Saved Successfully : $resourceRating")
-                return resourceRating
+            println(resourceData)
+
+            ResourceRating resourceRating1 = new ResourceRating(user: user , resource: resource, score: new Integer(resourceData.score))
+            println(resourceRating1)
+            if (resourceRating1.save(flush: true)) {
+                log.info("Score Saved Successfully : $resourceRating1")
+                return resourceRating1
             } else {
-                log.error("Error while saving : $resourceRating")
-                resourceRating.errors.allErrors.each { println(it) }
+                log.error("Error while saving : $resourceRating1")
+                resourceRating1.errors.allErrors.each { println(it) }
                 return null
             }
         }

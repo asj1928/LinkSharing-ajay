@@ -46,7 +46,7 @@
 
             <div class="form-group col-lg-10">
                 <label for="ph">Photo</label>
-                <input class="form-control" type="file" id="ph" name="photo">
+                <input class="form-control" type="file" id="ph" name="photo" accept="image/*">
 
             </div>
 

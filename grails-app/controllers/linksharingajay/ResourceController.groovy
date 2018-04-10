@@ -24,8 +24,8 @@ class ResourceController {
             render(view: 'showResources',model: [resource:resource,resourceType : resourceType])
         }
         else {
-            flash.error = "User cannot view this resource"
-            redirect(controller: 'login',view: 'index')
+            flash.error = "User cannot view this resource BECAUSE IT IS PRIVATE"
+            redirect(controller: 'user',view: 'index')
         }
     }
 
@@ -106,7 +106,7 @@ class ResourceController {
     }
 
     def storeRating() {
-        Map map = [score: params.star,ratedBy: session.user, resourceId: params.id]
+        Map map = [score: params.star,ratedBy: session.user.id, resourceId: params.id]
         println(map)
         if (resourceService.saveRating(map)) {
             flash.message = "Saved Succesfully"

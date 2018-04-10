@@ -12,7 +12,8 @@ class UserController {
         /* session.user.getUnreadResource()*/
         if (session.user) {
             List<InboxVO> unReadResourcesList = session.user.getUnReadResources()
-            println(unReadResourcesList)
+            println(unReadResourcesList+"====ooooo=======oooooooo==========")
+            println(unReadResourcesList.toString()+"************************")
             render(view: 'index', model: [unReadResourcesList: unReadResourcesList])
         }else {
             redirect(controller: 'login', action: 'index')

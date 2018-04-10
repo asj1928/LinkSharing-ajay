@@ -16,7 +16,10 @@
     <div class="container-fluid">
         <div class="col-lg-4">
             <div class="navbar-header">
-                <a class="navbar-brand" href="#">LinkSharing</a>
+                <g:if test="${session.user!=null}">
+                <a class="navbar-brand" href="${createLink(controller: 'user',view:'index')}">LinkSharing</a>
+                </g:if>
+                <g:else><a class="navbar-brand" href="${createLink(controller: 'login',view:'index')}">LinkSharing</a></g:else>
             </div>
         </div>
         <div class="col-lg-8">

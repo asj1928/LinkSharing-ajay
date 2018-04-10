@@ -10,13 +10,11 @@
                     </div>
 
                     <div class="col-sm-10">
-                        <span>Uday Pratap Singh &nbsp;&nbsp;&nbsp;&nbsp;<small class="text-muted">@Uday  5min</small>
-                            <a href="#" class="pull-right">Grails</a>
+                        <span>${unReadResources.ownerName}   &nbsp;&nbsp;&nbsp;&nbsp;<small class="text-muted">@${unReadResources.ownerUsername}  5min</small>
+                            <a href="${createLink(controller: 'topic' ,action: 'index',id: unReadResources.topicId)}"  class="pull-right">${unReadResources.topicName}</a>
 
                             <p>
-                                lasjbdjb asjbdashj asjkdbjasd djknasndjk asdnasjknd jkasdjjassajkndjskadjkkjksadjknj
-                                adksjnasd jkansjkdnas askdnasjkn m,as dasdjkasjd jknkjjknds asjndnasd jknasjkd jkasndj
-                                askndklkasndjksa
+                                ${unReadResources.resourceDescription}
                             </p>
                         </span>
 
@@ -28,7 +26,7 @@
                                                                                                  style="color: #007efc;font-size: small">Download</a>
                                 <a href="#" style="color: #007efc;font-size: small"><ls:checkRead
                                         isRead="false"></ls:checkRead></a>
-                                <a href="#" style="color: #007efc;font-size: small">View Topic</a></span>
+                                <a href="${createLink(controller:'resource',action:'index',id:unReadResources.resourceId)}" style="color: #007efc;font-size: small">View Topic</a></span>
                         </div>
                     </div>
 
