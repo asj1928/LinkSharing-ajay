@@ -21,6 +21,7 @@ class TopicController {
     }
 
     def save(){
+        if (session.user) {
         Topic topic=new Topic()
         topic.name=params.name1
         if(params.visibility=="public"){
@@ -39,7 +40,12 @@ class TopicController {
             flash.error="Error"
 
         }
-        forward(controller:'user', action: 'index')
+        forward(controller:'user', action: 'index')}
+        else {
+            flash.message="not loged in"
+            redirect(controller: 'user', view: 'index')
+        }
+
 
     }
     def handleObjectNotFoundException(ObjectNotFoundException e) {
